@@ -1,0 +1,1638 @@
+[
+  {
+    "id": "1",
+    "user": "Madame Dupont",
+    "location": "5 Rue des Fleurs",
+    "items": [
+      "Pain",
+      "Lait",
+      "Oeufs",
+      "Pommes"
+    ],
+    "reward": "5€",
+    "status": "completed",
+    "timestamp": 1771260869974,
+    "ticketPrice": 30.32,
+    "totalToCollect": "35.32"
+  },
+  {
+    "id": "2",
+    "user": "Jean Pierre",
+    "location": "12 Avenue de la Liberté",
+    "items": [
+      "Eau minérale (pack)",
+      "Pâtes",
+      "Sauce tomate"
+    ],
+    "reward": "3€",
+    "status": "completed",
+    "timestamp": 1771257269974,
+    "ticketPrice": 35.56,
+    "totalToCollect": "38.56"
+  },
+  {
+    "id": "1771269135104",
+    "status": "completed",
+    "timestamp": 1771269135104,
+    "items": [
+      "🥖 Pain",
+      "🥛 Lait",
+      "🥚 Oeufs"
+    ],
+    "location": "Chez moi (Géoloc auto)",
+    "reward": "5€",
+    "user": "Maman",
+    "ticketPrice": 35.39,
+    "totalToCollect": "40.39"
+  },
+  {
+    "id": "1771269378076",
+    "status": "completed",
+    "timestamp": 1771269378076,
+    "items": [
+      "Pain",
+      "Lait",
+      "Oeufs",
+      "Pommes"
+    ],
+    "location": "12 Rue des Exemples, 75000",
+    "reward": "5€",
+    "user": "User 77",
+    "ticketPrice": 17.6,
+    "totalToCollect": "22.60"
+  },
+  {
+    "id": "1771271492718",
+    "status": "completed",
+    "timestamp": 1771271492718,
+    "items": [
+      "lait",
+      "pain"
+    ],
+    "location": "48.5837, 7.7022",
+    "reward": "5€",
+    "user": "Client #844",
+    "ticketPrice": 26.57,
+    "totalToCollect": "31.57"
+  },
+  {
+    "id": "1771273092019",
+    "status": "completed",
+    "timestamp": 1771273092019,
+    "items": [
+      {
+        "name": "lait ",
+        "price": 1.15
+      },
+      {
+        "name": "pain",
+        "price": 1.2
+      },
+      {
+        "name": "oeuf",
+        "price": 0
+      },
+      {
+        "name": "eau",
+        "price": 0.5
+      },
+      {
+        "name": "banane",
+        "price": 0.35
+      },
+      {
+        "name": "pomme",
+        "price": 0.4
+      }
+    ],
+    "location": "48.5837, 7.7021",
+    "reward": "5€",
+    "budget": "8",
+    "user": "Client #266",
+    "ticketPrice": 60,
+    "totalToCollect": "65.00"
+  },
+  {
+    "id": "1771273355757",
+    "status": "completed",
+    "timestamp": 1771273355757,
+    "items": [
+      {
+        "name": "lait",
+        "price": 1.15
+      }
+    ],
+    "location": "48.5837, 7.7022",
+    "reward": "5€",
+    "budget": "1",
+    "user": "Client #20",
+    "ticketPrice": 37.9,
+    "totalToCollect": "42.90"
+  },
+  {
+    "id": "1771273603288",
+    "status": "completed",
+    "timestamp": 1771273603288,
+    "items": [
+      {
+        "name": "lait",
+        "price": 1.15
+      }
+    ],
+    "location": "48.5837, 7.7023",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #451",
+    "ticketPrice": 17.13,
+    "totalToCollect": "22.13"
+  },
+  {
+    "id": "1771273865326",
+    "status": "completed",
+    "timestamp": 1771273865326,
+    "items": [
+      {
+        "name": "Lait",
+        "price": 1.15
+      },
+      {
+        "name": "Pâtes",
+        "price": 0
+      },
+      {
+        "name": "Fruits",
+        "price": 0
+      },
+      {
+        "name": "Eau",
+        "price": 0.5
+      },
+      {
+        "name": "Oeufs",
+        "price": 3.1
+      },
+      {
+        "name": "Pain",
+        "price": 1.2
+      },
+      {
+        "name": "doliprane",
+        "price": 0
+      }
+    ],
+    "location": "48.5836, 7.7023",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #296",
+    "ticketPrice": 15.99,
+    "totalToCollect": "20.99"
+  },
+  {
+    "id": "1771274285853",
+    "status": "completed",
+    "timestamp": 1771274285854,
+    "items": [
+      {
+        "name": "Lait",
+        "price": 1.15
+      },
+      {
+        "name": "Couches",
+        "price": 0
+      },
+      {
+        "name": "Fruits",
+        "price": 0
+      },
+      {
+        "name": "Pain",
+        "price": 1.2
+      },
+      {
+        "name": "Oeufs",
+        "price": 3.1
+      },
+      {
+        "name": "Savon",
+        "price": 0
+      },
+      {
+        "name": "Café",
+        "price": 0
+      },
+      {
+        "name": "Doliprane",
+        "price": 0
+      },
+      {
+        "name": "Pansements",
+        "price": 0
+      },
+      {
+        "name": "Lait",
+        "price": 1.15
+      },
+      {
+        "name": "Pain",
+        "price": 1.2
+      },
+      {
+        "name": "Shampoing",
+        "price": 3.5
+      },
+      {
+        "name": "Papier",
+        "price": 4.5
+      },
+      {
+        "name": "Eau",
+        "price": 0.5
+      },
+      {
+        "name": "Dentifrice",
+        "price": 0
+      }
+    ],
+    "location": "48.5837, 7.7022",
+    "reward": "10€",
+    "budget": "",
+    "user": "Client #936",
+    "ticketPrice": 16.67,
+    "totalToCollect": "26.67"
+  },
+  {
+    "id": "1771274483021",
+    "status": "completed",
+    "timestamp": 1771274483021,
+    "items": [
+      {
+        "name": "Pain",
+        "price": 1.2
+      },
+      {
+        "name": "Lait",
+        "price": 1.15
+      },
+      {
+        "name": "Pâtes",
+        "price": 0
+      },
+      {
+        "name": "Fruits",
+        "price": 0
+      },
+      {
+        "name": "Eau",
+        "price": 0.5
+      },
+      {
+        "name": "Shampoing",
+        "price": 3.5
+      }
+    ],
+    "location": "48.5837, 7.7021",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #514",
+    "ticketPrice": 37.08,
+    "totalToCollect": "42.08"
+  },
+  {
+    "id": "1771274665719",
+    "status": "completed",
+    "timestamp": 1771274665719,
+    "items": [
+      {
+        "name": "Pain",
+        "price": 1.2
+      },
+      {
+        "name": "Lait",
+        "price": 1.15
+      },
+      {
+        "name": "Oeufs",
+        "price": 3.1
+      },
+      {
+        "name": "Pâtes",
+        "price": 0
+      },
+      {
+        "name": "Fruits",
+        "price": 0
+      },
+      {
+        "name": "Eau",
+        "price": 0.5
+      },
+      {
+        "name": "Doliprane",
+        "price": 0
+      },
+      {
+        "name": "Couches",
+        "price": 0
+      }
+    ],
+    "location": "48.5837, 7.7022",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #176",
+    "ticketPrice": 12.7,
+    "totalToCollect": "17.70"
+  },
+  {
+    "id": "1771274998470",
+    "status": "completed",
+    "timestamp": 1771274998470,
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "48.5836, 7.7018",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #288",
+    "ticketPrice": 13.43,
+    "totalToCollect": "18.43"
+  },
+  {
+    "id": "1771275059515",
+    "status": "completed",
+    "timestamp": 1771275059515,
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "48.5836, 7.7018",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #615",
+    "ticketPrice": 11.77,
+    "totalToCollect": "16.77"
+  },
+  {
+    "id": "1771275160371",
+    "status": "completed",
+    "timestamp": 1771275160371,
+    "items": [
+      {
+        "name": "lait",
+        "price": 1.15
+      },
+      {
+        "name": "oeuf",
+        "price": 0
+      },
+      {
+        "name": "chocolat",
+        "price": 0
+      }
+    ],
+    "location": "48.5836, 7.7019",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #402",
+    "ticketPrice": 26.86,
+    "totalToCollect": "31.86"
+  },
+  {
+    "id": "1771275384939",
+    "status": "completed",
+    "timestamp": 1771275384939,
+    "items": [
+      {
+        "name": "Lait",
+        "price": 1.15
+      }
+    ],
+    "location": "48.5837, 7.7018",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #570",
+    "ticketPrice": 20,
+    "totalToCollect": "25.00"
+  },
+  {
+    "id": "1771275475644",
+    "status": "completed",
+    "timestamp": 1771275475644,
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "48.5836, 7.7021",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #345",
+    "ticketPrice": 25.6,
+    "totalToCollect": "30.60"
+  },
+  {
+    "id": "1771275569305",
+    "status": "completed",
+    "timestamp": 1771275569305,
+    "items": [
+      {
+        "name": "Pain",
+        "price": 1.2
+      },
+      {
+        "name": "Lait",
+        "price": 1.15
+      }
+    ],
+    "location": "48.5836, 7.7021",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #492",
+    "ticketPrice": 11.2,
+    "totalToCollect": "16.20"
+  },
+  {
+    "id": "1771276388967",
+    "status": "completed",
+    "timestamp": 1771276388967,
+    "items": [
+      {
+        "name": "lait",
+        "price": 1.15
+      }
+    ],
+    "location": "48.5837, 7.7020",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #253",
+    "ticketPrice": 30.14,
+    "totalToCollect": "35.14"
+  },
+  {
+    "id": "1771276520671",
+    "status": "completed",
+    "timestamp": 1771276520671,
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "48.5837, 7.7019",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #28",
+    "ticketPrice": 23.35,
+    "totalToCollect": "28.35"
+  },
+  {
+    "id": "1771277036632",
+    "status": "completed",
+    "timestamp": 1771277036632,
+    "items": [
+      {
+        "name": "lait",
+        "price": 1.15
+      }
+    ],
+    "location": "48.5837, 7.7019",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #917",
+    "ticketPrice": 23.62,
+    "totalToCollect": "28.62"
+  },
+  {
+    "id": "1771277663518",
+    "status": "completed",
+    "timestamp": 1771277663518,
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "48.5836, 7.7021",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #87",
+    "ticketPrice": 21.33,
+    "totalToCollect": "26.33"
+  },
+  {
+    "id": "1771277783672",
+    "status": "completed",
+    "timestamp": 1771277783672,
+    "type": "colis",
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "17 rue seneque",
+    "pickupLocation": "48.5836, 7.7021",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #767",
+    "ticketPrice": 0,
+    "totalToCollect": "5.00"
+  },
+  {
+    "id": "1771277820985",
+    "status": "completed",
+    "timestamp": 1771277820985,
+    "type": "colis",
+    "items": [
+      {
+        "name": "Colis Personnalisé",
+        "price": 0
+      }
+    ],
+    "location": "456 Avenue d'Arriv",
+    "pickupLocation": "123 Rue de D",
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #80",
+    "ticketPrice": 0,
+    "totalToCollect": "5.00"
+  },
+  {
+    "id": "1771278221583",
+    "status": "completed",
+    "timestamp": 1771278221583,
+    "type": "courses",
+    "items": [
+      {
+        "name": "emmental rape 200g",
+        "price": 2.4
+      },
+      {
+        "name": "banane (unite)",
+        "price": 0.35
+      },
+      {
+        "name": "doliprane 1000mg",
+        "price": 2.75
+      },
+      {
+        "name": "cafe moulu 250g",
+        "price": 3.4
+      },
+      {
+        "name": "eau de source 1.5l",
+        "price": 0.4
+      },
+      {
+        "name": "jus d'orange 1l",
+        "price": 1.95
+      }
+    ],
+    "location": "48.5836, 7.7020",
+    "pickupLocation": null,
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #334",
+    "ticketPrice": 21.11,
+    "totalToCollect": "26.11"
+  },
+  {
+    "id": "1771278336279",
+    "status": "completed",
+    "timestamp": 1771278336279,
+    "type": "courses",
+    "items": [
+      {
+        "name": "lait d'amande",
+        "price": 2.1
+      },
+      {
+        "name": "chocolat au lait",
+        "price": 1.4
+      },
+      {
+        "name": "cafe moulu 250g",
+        "price": 3.4
+      },
+      {
+        "name": "muesli",
+        "price": 3.5
+      },
+      {
+        "name": "oeufs x12",
+        "price": 3.5
+      }
+    ],
+    "location": "48.5837, 7.7022",
+    "pickupLocation": null,
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #459",
+    "ticketPrice": 18.76,
+    "totalToCollect": "23.76"
+  },
+  {
+    "id": "1771278466590",
+    "status": "completed",
+    "timestamp": 1771278466590,
+    "type": "courses",
+    "items": [
+      {
+        "name": "lait entier",
+        "price": 1.25
+      },
+      {
+        "name": "jus d'orange 1l",
+        "price": 1.95
+      },
+      {
+        "name": "coca-cola 1.5l",
+        "price": 2.2
+      },
+      {
+        "name": "moutarde",
+        "price": 1.5
+      },
+      {
+        "name": "vitamine c",
+        "price": 6.5
+      }
+    ],
+    "location": "48.5836, 7.7020",
+    "pickupLocation": null,
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #531",
+    "ticketPrice": 9.46,
+    "totalToCollect": "14.46"
+  },
+  {
+    "id": "1771278481774",
+    "status": "completed",
+    "timestamp": 1771278481774,
+    "type": "courses",
+    "items": [
+      {
+        "name": "doliprane 1000mg",
+        "price": 2.75
+      }
+    ],
+    "location": "123 Rue de Rivoli",
+    "pickupLocation": null,
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #6",
+    "ticketPrice": 28.39,
+    "totalToCollect": "33.39"
+  },
+  {
+    "id": "1771279321787",
+    "status": "completed",
+    "timestamp": 1771279321787,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "coca zero 1.5l",
+        "price": 2.2
+      },
+      {
+        "name": "fraise 250g",
+        "price": 3.5
+      },
+      {
+        "name": "mozzarella galbani",
+        "price": 1.8
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Pates Penne 500g",
+        "price": 1.1
+      },
+      {
+        "name": "Coca-Cola 1.5L",
+        "price": 2.2
+      },
+      {
+        "name": "Beurre Lidl",
+        "price": 1.95
+      },
+      {
+        "name": "Camembert Lidl",
+        "price": 1.6
+      },
+      {
+        "name": "Yaourt nature x4",
+        "price": 1.45
+      },
+      {
+        "name": "Chips Lidl",
+        "price": 1.2
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      }
+    ],
+    "location": "48.5836, 7.7017",
+    "pickupLocation": null,
+    "reward": "5€",
+    "budget": "",
+    "user": "Client #319",
+    "ticketPrice": 28.74,
+    "totalToCollect": "33.74"
+  },
+  {
+    "id": "1771279404091",
+    "status": "completed",
+    "timestamp": 1771279404091,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      },
+      {
+        "name": "Chips Lidl",
+        "price": 1.2
+      }
+    ],
+    "location": "19 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "11.57€",
+    "deliveryFee": 9.57,
+    "tip": 2,
+    "user": "Client #950",
+    "ticketPrice": 13.18,
+    "totalToCollect": "24.75"
+  },
+  {
+    "id": "1771279534542",
+    "status": "completed",
+    "timestamp": 1771279534542,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      }
+    ],
+    "location": "19 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "9.03€",
+    "deliveryFee": 9.03,
+    "tip": 0,
+    "user": "Client #224",
+    "ticketPrice": 28.83,
+    "totalToCollect": "37.86"
+  },
+  {
+    "id": "1771279573494",
+    "status": "completed",
+    "timestamp": 1771279573494,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "8.33€",
+    "deliveryFee": 8.33,
+    "tip": 0,
+    "user": "Client #754",
+    "ticketPrice": 5.31,
+    "totalToCollect": "13.64"
+  },
+  {
+    "id": "1771279853727",
+    "status": "completed",
+    "timestamp": 1771279853727,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "7.50€",
+    "deliveryFee": 7.5,
+    "tip": 0,
+    "user": "Client #998",
+    "ticketPrice": 18.84,
+    "totalToCollect": "26.34"
+  },
+  {
+    "id": "1771280013765",
+    "status": "completed",
+    "timestamp": 1771280013765,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "8.12€",
+    "deliveryFee": 8.12,
+    "tip": 0,
+    "user": "Client #799",
+    "ticketPrice": 11.21,
+    "totalToCollect": "19.33"
+  },
+  {
+    "id": "1771280100960",
+    "status": "completed",
+    "timestamp": 1771280100960,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "9.18€",
+    "deliveryFee": 9.18,
+    "tip": 0,
+    "user": "Client #775",
+    "ticketPrice": 18,
+    "totalToCollect": "27.18"
+  },
+  {
+    "id": "1771280190870",
+    "status": "completed",
+    "timestamp": 1771280190870,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      }
+    ],
+    "location": "17 Rue Sénèque",
+    "pickupLocation": null,
+    "reward": "8.03€",
+    "deliveryFee": 8.03,
+    "tip": 0,
+    "user": "Client #102",
+    "ticketPrice": 22.05,
+    "totalToCollect": "30.08"
+  },
+  {
+    "id": "1771280229124",
+    "status": "completed",
+    "timestamp": 1771280229124,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Coca-Cola 1.5L",
+        "price": 2.2
+      },
+      {
+        "name": "Chips Lidl",
+        "price": 1.2
+      },
+      {
+        "name": "Beurre Lidl",
+        "price": 1.95
+      },
+      {
+        "name": "Camembert Lidl",
+        "price": 1.6
+      },
+      {
+        "name": "Pates Penne 500g",
+        "price": 1.1
+      },
+      {
+        "name": "Yaourt nature x4",
+        "price": 1.45
+      }
+    ],
+    "location": "17 Rue Sénèque",
+    "pickupLocation": null,
+    "reward": "7.98€",
+    "deliveryFee": 7.98,
+    "tip": 0,
+    "user": "Client #763",
+    "ticketPrice": 6.65,
+    "totalToCollect": "14.63"
+  },
+  {
+    "id": "1771280449812",
+    "status": "completed",
+    "timestamp": 1771280449812,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      },
+      {
+        "name": "Beurre Lidl",
+        "price": 1.95
+      },
+      {
+        "name": "Pates Penne 500g",
+        "price": 1.1
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Coca-Cola 1.5L",
+        "price": 2.2
+      },
+      {
+        "name": "Chips Lidl",
+        "price": 1.2
+      },
+      {
+        "name": "Yaourt nature x4",
+        "price": 1.45
+      },
+      {
+        "name": "Camembert Lidl",
+        "price": 1.6
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "9.67€",
+    "deliveryFee": 9.67,
+    "tip": 0,
+    "user": "Client #460",
+    "ticketPrice": 24.27,
+    "totalToCollect": "33.94"
+  },
+  {
+    "id": "1771280541460",
+    "status": "completed",
+    "timestamp": 1771280541460,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      },
+      {
+        "name": "Beurre Lidl",
+        "price": 1.95
+      },
+      {
+        "name": "Pates Penne 500g",
+        "price": 1.1
+      },
+      {
+        "name": "Coca-Cola 1.5L",
+        "price": 2.2
+      }
+    ],
+    "location": "19 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "9.77€",
+    "deliveryFee": 9.77,
+    "tip": 0,
+    "user": "Client #720",
+    "ticketPrice": 15.51,
+    "totalToCollect": "25.28"
+  },
+  {
+    "id": "1771280575009",
+    "status": "completed",
+    "timestamp": 1771280575009,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      }
+    ],
+    "location": "19 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "8.06€",
+    "deliveryFee": 8.06,
+    "tip": 0,
+    "user": "Client #512",
+    "ticketPrice": 5.03,
+    "totalToCollect": "13.09"
+  },
+  {
+    "id": "1771280693079",
+    "status": "completed",
+    "timestamp": 1771280693079,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Coca-Cola 1.5L",
+        "price": 2.2
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "5.40€",
+    "deliveryFee": 5.4,
+    "tip": 0,
+    "user": "Client #840",
+    "ticketPrice": 21.91,
+    "totalToCollect": "27.31"
+  },
+  {
+    "id": "1771280808896",
+    "status": "completed",
+    "timestamp": 1771280808896,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Pates Penne 500g",
+        "price": 1.1
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "5.00€",
+    "deliveryFee": 5,
+    "tip": 0,
+    "user": "Client #368",
+    "ticketPrice": 19.14,
+    "totalToCollect": "24.14"
+  },
+  {
+    "id": "1771280907451",
+    "status": "completed",
+    "timestamp": 1771280907451,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "5.00€",
+    "deliveryFee": 5,
+    "tip": 0,
+    "user": "Client #340",
+    "ticketPrice": 25.62,
+    "totalToCollect": "30.62"
+  },
+  {
+    "id": "1771281061360",
+    "status": "completed",
+    "timestamp": 1771281061360,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Eau Cristalline 6x1.5L",
+        "price": 1.8
+      },
+      {
+        "name": "Coca-Cola 1.5L",
+        "price": 2.2
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "pickupLocation": null,
+    "reward": "8.28€",
+    "deliveryFee": 8.28,
+    "tip": 0,
+    "user": "Client #90",
+    "ticketPrice": 15.76,
+    "totalToCollect": "24.04"
+  },
+  {
+    "id": "1771281208288",
+    "status": "completed",
+    "timestamp": 1771281208288,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      }
+    ],
+    "location": "17 Rue Sénèque",
+    "pickupLocation": null,
+    "reward": "9.04€",
+    "deliveryFee": 9.04,
+    "tip": 0,
+    "user": "Client #71",
+    "ticketPrice": 10.99,
+    "totalToCollect": "20.03"
+  },
+  {
+    "id": "1771281635315",
+    "status": "completed",
+    "timestamp": 1771281635315,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      }
+    ],
+    "location": "17 Rue Sénèque",
+    "locationCoords": {
+      "lat": 48.5835261,
+      "lng": 7.7019853
+    },
+    "pickupLocation": null,
+    "pickupCoords": null,
+    "reward": "7.81€",
+    "deliveryFee": 7.81,
+    "tip": 0,
+    "user": "Client #908",
+    "ticketPrice": 7.18,
+    "totalToCollect": "14.99"
+  },
+  {
+    "id": "1771281730264",
+    "status": "completed",
+    "timestamp": 1771281730264,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "locationCoords": {
+      "lat": 48.58356987414873,
+      "lng": 7.7019421900378
+    },
+    "pickupLocation": null,
+    "pickupCoords": null,
+    "reward": "8.37€",
+    "deliveryFee": 8.37,
+    "tip": 0,
+    "user": "Client #827",
+    "ticketPrice": 7.14,
+    "totalToCollect": "15.51"
+  },
+  {
+    "id": "1771281861698",
+    "status": "completed",
+    "timestamp": 1771281861698,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Lait Demi-ecreme",
+        "price": 1.1
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      }
+    ],
+    "location": "17 Rue Sénèque, Koenigshoffen",
+    "locationCoords": {
+      "lat": 48.583638312327054,
+      "lng": 7.702051972184553
+    },
+    "pickupLocation": null,
+    "pickupCoords": null,
+    "reward": "7.80€",
+    "deliveryFee": 7.8,
+    "tip": 0,
+    "user": "Client #451",
+    "ticketPrice": 28.56,
+    "totalToCollect": "36.36"
+  },
+  {
+    "id": "1771281899181",
+    "status": "completed",
+    "timestamp": 1771281899181,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      },
+      {
+        "name": "Papier toilette Lotus x12",
+        "price": 6.5
+      },
+      {
+        "name": "Baguette",
+        "price": 3
+      }
+    ],
+    "location": "10 Rue Sénèque, Koenigshoffen",
+    "locationCoords": {
+      "lat": 48.583639596772436,
+      "lng": 7.702178654854569
+    },
+    "pickupLocation": null,
+    "pickupCoords": null,
+    "reward": "12.72€",
+    "deliveryFee": 7.72,
+    "tip": 5,
+    "user": "Client #456",
+    "ticketPrice": 13.56,
+    "totalToCollect": "26.28"
+  },
+  {
+    "id": "1771282253346",
+    "status": "completed",
+    "timestamp": 1771282253346,
+    "type": "courses",
+    "items": [
+      {
+        "name": "Doliprane 1000mg tab",
+        "price": 2.75
+      },
+      {
+        "name": "Oeufs x12",
+        "price": 3.5
+      },
+      {
+        "name": "Bananes 1kg",
+        "price": 1.9
+      },
+      {
+        "name": "Jambon blanc x4 (Lidl)",
+        "price": 2.4
+      }
+    ],
+    "location": "",
+    "locationCoords": null,
+    "pickupLocation": null,
+    "pickupCoords": null,
+    "reward": "6.97€",
+    "deliveryFee": 6.97,
+    "tip": 0,
+    "user": "Client #96",
+    "ticketPrice": 16.51,
+    "totalToCollect": "23.48"
+  }
+]
