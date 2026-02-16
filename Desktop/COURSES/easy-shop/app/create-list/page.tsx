@@ -5,6 +5,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, MapPin, ShoppingBag, CreditCard, Smartphone, ShieldCheck, Search, Package, ShoppingCart, ArrowRight, HeartPulse, TrendingUp } from 'lucide-react';
 import { PRICE_DB } from '../lib/db';
+import StripePayment from '../components/StripePayment';
 
 export default function CreateListing() {
   const router = useRouter();
@@ -598,20 +599,11 @@ export default function CreateListing() {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingBottom: '100px' }}>
-                <button onClick={handlePost} style={{
-                  background: 'black', color: 'white', border: 'none', borderRadius: '18px', padding: '20px', 
-                  fontSize: '17px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-                }}>
-                  <Smartphone size={20} /> Payer avec Apple Pay
-                </button>
-                <button onClick={handlePost} style={{
-                  background: 'white', color: '#1d1d1f', border: '1px solid #d2d2d7', borderRadius: '18px', padding: '18px', 
-                  fontSize: '17px', fontWeight: '600'
-                }}>
-                  Carte Bancaire
-                </button>
+              <div style={{ paddingBottom: '100px' }}>
+                <StripePayment 
+                  amount={parseFloat((parseFloat(estimatedTotal.toString()) * (isColis ? 1 : 1.25) + (deliveryFee + tip)).toFixed(2))}
+                  onSuccess={() => handlePost()}
+                />
               </div>
             </div>
           </>

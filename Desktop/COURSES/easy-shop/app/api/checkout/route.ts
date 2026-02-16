@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const { amount, jobId } = await request.json();
 
     // Create a PaymentIntent for the specified amount
-    const paymentIntent = await Stripe.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Stripe expects cents
       currency: 'eur',
       metadata: { jobId },
