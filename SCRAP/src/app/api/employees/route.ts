@@ -1,52 +1,45 @@
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 import { saveLead } from '@/lib/db';
-import { getTechnicalTeam } from '@/lib/apollo';
+import { runGrokDiscovery } from '@/lib/discovery';
 
-/**
- * Deep Scan: Fetch all technical decision makers for a given company domain.
- * This effectively "explodes" one company into multiple high-value leads.
- */
 export async function POST(req: Request) {
   try {
     const { domain, companyName } = await req.json();
 
     if (!domain) {
-      return NextResponse.json({ success: false, error: 'Domain is required for Deep Scan.' }, { status: 400 });
+      return NextResponse.json({ success: false, error: 'Domain is required for Discovery.' }, { status: 400 });
     }
 
-    console.log(`Starting Technical Deep Scan for ${companyName} (${domain})...`);
+    console.log(`📡 Initiating Grok Intelligence Discovery for ${companyName}...`);
     
-    // Apollo Multi-Agent Fetch
-    const employees = await getTechnicalTeam(domain);
-    
-    if (!employees || employees.length === 0) {
-      return NextResponse.json({ success: false, error: 'No technical leads found for this organization.' });
-    }
+    // The Master Intelligence Call
+    const results = await runGrokDiscovery(companyName, domain);
 
-    // Save each employee as a new lead
-    for (let emp of employees) {
+    // Save identified leads to database
+    for (let res of results) {
       await saveLead({
         id: uuidv4(),
-        name: emp.fullName || companyName, // Individual name
-        title: emp.title || 'Decision Maker',
-        source: 'Apollo-DeepScan',
-        url: emp.linkedinUrl || '',
+        name: res.name || companyName,
+        title: res.title || 'Decision Maker',
+        source: res.source,
+        url: '',
         domain: domain,
-        email: emp.email,
-        status: emp.email ? 'enriched' : 'scraped',
+        email: res.email || undefined,
+        status: res.email ? 'enriched' : 'scraped',
         date: new Date().toISOString()
       });
     }
 
     return NextResponse.json({ 
       success: true, 
-      count: employees.length,
-      message: `${employees.length} technical decision makers identified and added to pipeline.`
+      count: results.length,
+      leads: results,
+      message: `Strategic discovery complete: ${results.length} high-confidence contacts identified.`
     });
 
   } catch (error: any) {
-    console.error('Deep Scan error:', error.message);
+    console.error('Grok Discovery error:', error.message);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }

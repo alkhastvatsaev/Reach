@@ -2438,7 +2438,7 @@
       "url": "https://fr.linkedin.com/jobs/view/chef-de-projet-web-h-f-at-actimage-4304068628?position=19&pageNum=0&refId=1NilA%2BHN3dsP%2FV%2FR8vfIiQ%3D%3D&trackingId=WbBDiJOmoVVDoF%2FJofzW8A%3D%3D",
       "domain": "actimage.ch",
       "logo": null,
-      "status": "scraped",
+      "status": "emailed",
       "date": "2026-02-25T21:43:58.621Z"
     },
     {
@@ -2451,6 +2451,72 @@
       "logo": null,
       "status": "emailed",
       "date": "2026-02-25T21:43:58.840Z"
+    },
+    {
+      "id": "f912cd89-0725-4de9-af02-4fb59e38bd4c",
+      "name": "Groupe A2micile - Azaé & Domaliance",
+      "title": "Chef(fe) de Projet IT / Digital en alternance F/H",
+      "source": "LinkedIn",
+      "url": "https://fr.linkedin.com/jobs/view/chef-fe-de-projet-it-digital-en-alternance-f-h-at-a2micile-europe-4366601387?position=1&pageNum=0&refId=jY75thzyvhDAMEQdVAn9gg%3D%3D&trackingId=MUCiMybedKGiA1fpOsULxg%3D%3D",
+      "domain": "",
+      "logo": "",
+      "status": "scraped",
+      "date": "2026-02-25T22:19:50.609Z"
+    },
+    {
+      "id": "6ac8dc99-7da9-4b28-836d-4c9ed21dc8e7",
+      "name": "Sidel",
+      "title": "Apprenti(e) Développeur Full Stack H/F",
+      "source": "LinkedIn",
+      "url": "https://fr.linkedin.com/jobs/view/apprenti-e-d%C3%A9veloppeur-full-stack-h-f-at-sidel-4376771172?position=2&pageNum=0&refId=jY75thzyvhDAMEQdVAn9gg%3D%3D&trackingId=wjAFQmglOZHAxB%2FbbWzEoA%3D%3D",
+      "domain": "sideline.com",
+      "logo": null,
+      "status": "scraped",
+      "date": "2026-02-25T22:19:50.839Z"
+    },
+    {
+      "id": "b0a5ff0f-aee4-47b9-a658-1531a2463724",
+      "name": "atomx.",
+      "title": "Consultant ServiceNow H/F Stage/ Alternance",
+      "source": "LinkedIn",
+      "url": "https://fr.linkedin.com/jobs/view/consultant-servicenow-h-f-stage-alternance-at-atomx-4371125173?position=3&pageNum=0&refId=jY75thzyvhDAMEQdVAn9gg%3D%3D&trackingId=JBwPjfrSHTU06nV0RxlDUQ%3D%3D",
+      "domain": "atomx.in",
+      "logo": null,
+      "status": "scraped",
+      "date": "2026-02-25T22:19:51.072Z"
+    },
+    {
+      "id": "54a5a473-3a40-4cf8-b4d4-200aad4caf7f",
+      "name": "atomx.",
+      "title": "Consultant ServiceNow H/F Stage/ Alternance",
+      "source": "LinkedIn",
+      "url": "https://fr.linkedin.com/jobs/view/consultant-servicenow-h-f-stage-alternance-at-atomx-4371125173?position=1&pageNum=0&refId=1slqsg4N2Oghq1w0mo6wPA%3D%3D&trackingId=EKNh9jJkMhmVU7SyG9SLUQ%3D%3D",
+      "domain": "atomx.in",
+      "logo": null,
+      "status": "scraped",
+      "date": "2026-02-25T22:34:19.134Z"
+    },
+    {
+      "id": "ac0b9be7-477e-4e23-893e-4a6216029c31",
+      "name": "Groupe A2micile - Azaé & Domaliance",
+      "title": "Chef(fe) de Projet IT / Digital en alternance F/H",
+      "source": "LinkedIn",
+      "url": "https://fr.linkedin.com/jobs/view/chef-fe-de-projet-it-digital-en-alternance-f-h-at-a2micile-europe-4366601387?position=2&pageNum=0&refId=1slqsg4N2Oghq1w0mo6wPA%3D%3D&trackingId=pGrlie5bF%2FACCmODkC%2Ffmw%3D%3D",
+      "domain": "",
+      "logo": "",
+      "status": "scraped",
+      "date": "2026-02-25T22:34:19.325Z"
+    },
+    {
+      "id": "d58d86a9-890c-44d6-bce8-a0c227ad885e",
+      "name": "Sidel",
+      "title": "Apprenti(e) Développeur Full Stack H/F",
+      "source": "LinkedIn",
+      "url": "https://fr.linkedin.com/jobs/view/apprenti-e-d%C3%A9veloppeur-full-stack-h-f-at-sidel-4376771172?position=3&pageNum=0&refId=1slqsg4N2Oghq1w0mo6wPA%3D%3D&trackingId=GK4QS4wET0XEMljzfMvSPA%3D%3D",
+      "domain": "sideline.com",
+      "logo": null,
+      "status": "scraped",
+      "date": "2026-02-25T22:34:19.565Z"
     }
   ]
 }
