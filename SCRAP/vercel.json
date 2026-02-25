@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "src/app/api/**/*": {
+      "maxDuration": 60
+    }
+  },
+  "regions": ["cdg1"],
+  "github": {
+    "silent": true
+  }
+}

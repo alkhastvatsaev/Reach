@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV – Alkhast VATSAEV – Développeur Web Fullstack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: #1a1a2e;
+        background: #e8e8e8;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 20px auto;
+        background: #ffffff;
+        display: grid;
+        grid-template-columns: 72mm 1fr;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+          min-height: 100vh;
+        }
+        .no-print {
+          display: none !important;
+        }
+      }
+
+      /* === LEFT SIDEBAR === */
+      .sidebar {
+        background: #0f0f1a;
+        color: #e0e0e8;
+        padding: 36px 22px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+      }
+
+      .photo-area {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 800;
+        color: #fff;
+        margin: 0 auto 4px;
+        letter-spacing: -1px;
+      }
+
+      .sidebar-section {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 16px;
+      }
+
+      .sidebar-section:first-of-type {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .sidebar-title {
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        color: #8b8ba0;
+        margin-bottom: 12px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 10px;
+        line-height: 1.4;
+        color: #c8c8d8;
+      }
+
+      .contact-icon {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        opacity: 0.5;
+        margin-top: 1px;
+      }
+
+      .contact-item a {
+        color: #a5b4fc;
+        text-decoration: none;
+      }
+
+      /* Skills bars */
+      .skill-row {
+        margin-bottom: 10px;
+      }
+
+      .skill-name {
+        font-size: 10px;
+        font-weight: 500;
+        color: #d0d0e0;
+        margin-bottom: 4px;
+      }
+
+      .skill-bar {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .skill-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #6366f1, #a78bfa);
+      }
+
+      .lang-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 7px;
+      }
+
+      .lang-name {
+        font-size: 10px;
+        font-weight: 500;
+        color: #d0d0e0;
+      }
+
+      .lang-level {
+        font-size: 9px;
+        color: #8b8ba0;
+        font-weight: 400;
+      }
+
+      .interest-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .interest-tag {
+        font-size: 9px;
+        padding: 3px 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        color: #b0b0c8;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* === MAIN CONTENT === */
+      .main {
+        padding: 36px 30px 28px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .header-name {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        line-height: 1.1;
+        color: #0f0f1a;
+      }
+
+      .header-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: #6366f1;
+        margin-top: 4px;
+        letter-spacing: 0.3px;
+      }
+
+      .header-summary {
+        font-size: 10.5px;
+        line-height: 1.65;
+        color: #555;
+        margin-top: 10px;
+        padding-left: 12px;
+        border-left: 2px solid #e0e0e8;
+      }
+
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #0f0f1a;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #6366f1;
+        margin-bottom: 14px;
+      }
+
+      /* Project cards */
+      .project-card {
+        margin-bottom: 14px;
+        padding: 12px 14px;
+        background: #f8f8fc;
+        border-radius: 8px;
+        border-left: 3px solid #6366f1;
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 4px;
+      }
+
+      .project-name {
+        font-size: 12px;
+        font-weight: 700;
+        color: #1a1a2e;
+      }
+
+      .project-type {
+        font-size: 9px;
+        color: #8b8ba0;
+        font-weight: 500;
+      }
+
+      .project-desc {
+        font-size: 10px;
+        color: #555;
+        margin-bottom: 6px;
+        line-height: 1.5;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .tech-tag {
+        font-size: 8.5px;
+        padding: 2px 7px;
+        background: #eef0ff;
+        color: #4f46e5;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      /* Experience timeline */
+      .exp-item {
+        margin-bottom: 14px;
+        position: relative;
+        padding-left: 14px;
+      }
+
+      .exp-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 6px;
+        height: 6px;
+        background: #6366f1;
+        border-radius: 50%;
+      }
+
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .exp-role {
+        font-size: 11px;
+        font-weight: 700;
+        color: #1a1a2e;
+      }
+
+      .exp-date {
+        font-size: 9px;
+        color: #8b8ba0;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .exp-company {
+        font-size: 10px;
+        color: #6366f1;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .exp-details {
+        list-style: none;
+        padding: 0;
+      }
+
+      .exp-details li {
+        font-size: 9.5px;
+        color: #555;
+        line-height: 1.55;
+        padding-left: 10px;
+        position: relative;
+      }
+
+      .exp-details li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: #6366f1;
+        font-weight: 700;
+      }
+
+      /* Formation */
+      .edu-item {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 10px;
+        align-items: baseline;
+      }
+
+      .edu-year {
+        font-size: 10px;
+        font-weight: 700;
+        color: #6366f1;
+        white-space: nowrap;
+        min-width: 36px;
+      }
+
+      .edu-info {
+        flex: 1;
+      }
+
+      .edu-diploma {
+        font-size: 10.5px;
+        font-weight: 600;
+        color: #1a1a2e;
+      }
+
+      .edu-school {
+        font-size: 9.5px;
+        color: #888;
+      }
+
+      /* Print button */
+      .print-bar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+      }
+
+      .print-btn {
+        background: #6366f1;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        transition: all 0.2s;
+        font-family: "Inter", sans-serif;
+      }
+
+      .print-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 28px rgba(99, 102, 241, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar">
+        <div style="text-align: center">
+          <div class="photo-area">AV</div>
+        </div>
+
+        <!-- Contact -->
+        <div class="sidebar-section">
+          <div class="sidebar-title">Contact</div>
+
+          <div class="contact-item">
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>3 Rue Fred Vlès<br />67000 Strasbourg</span>
+          </div>
+
+          <div class="contact-item">
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+              />
+            </svg>
+            <span>07 67 69 38 04</span>
+          </div>
+
+          <div class="contact-item">
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <span
+              ><a href="mailto:alkhastvatsaev@icloud.com"
+                >alkhastvatsaev@icloud.com</a
+              ></span
+            >
+          </div>
+
+          <div class="contact-item">
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
+              />
+            </svg>
+            <span
+              ><a href="https://github.com/alkhastvatsaev"
+                >github.com/alkhastvatsaev</a
+              ></span
+            >
+          </div>
+
+          <div class="contact-item">
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0110 0v4" />
+            </svg>
+            <span>Permis B</span>
+          </div>
+        </div>
+
+        <!-- Tech Skills -->
+        <div class="sidebar-section">
+          <div class="sidebar-title">Compétences Dev</div>
+          <div class="skill-row">
+            <div class="skill-name">JavaScript / TypeScript</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">React.js / Next.js</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Node.js / API REST</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Firebase / Firestore</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Python</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 60%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">SQL / PostgreSQL</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 55%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Git / GitHub / Vercel</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">HTML5 / CSS3</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 85%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Also knows -->
+        <div class="sidebar-section">
+          <div class="sidebar-title">Conception 3D</div>
+          <div class="skill-row">
+            <div class="skill-name">Rhino 8 (Expert)</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">SolidWorks / Blender</div>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="sidebar-section">
+          <div class="sidebar-title">Langues</div>
+          <div class="lang-item">
+            <span class="lang-name">Français</span>
+            <span class="lang-level">Courant</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Anglais</span>
+            <span class="lang-level">Bilingue</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Russe</span>
+            <span class="lang-level">Bilingue</span>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="sidebar-section">
+          <div class="sidebar-title">Centres d'intérêt</div>
+          <div class="interest-tags">
+            <span class="interest-tag">🥊 Boxe</span>
+            <span class="interest-tag">🏀 Basketball</span>
+            <span class="interest-tag">⚡ Sprint</span>
+            <span class="interest-tag">✈️ Voyages</span>
+            <span class="interest-tag">💻 Open Source</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="main">
+        <!-- Header -->
+        <header>
+          <div class="header-name">Alkhast VATSAEV</div>
+          <div class="header-title">
+            Développeur Web Fullstack · En reconversion vers le BTS SIO SLAM
+          </div>
+          <p class="header-summary">
+            Professionnel de la conception numérique 3D en reconversion vers le
+            développement web. Fort de 4 ans d'expérience en environnement
+            exigeant (Cartier, freelance international), j'ai développé une
+            rigueur technique et une autonomie que j'applique aujourd'hui à la
+            création d'applications fullstack (React/Next.js, Node.js,
+            Firebase). Trois projets concrets déployés en production. À la
+            recherche d'une alternance BTS SIO pour formaliser et approfondir
+            mes compétences.
+          </p>
+        </header>
+
+        <!-- PROJETS DEV — THE HIGHLIGHT -->
+        <section>
+          <div class="section-title">Projets Développement · Portfolio</div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name"
+                >Reach — Plateforme d'Automatisation B2B</span
+              >
+              <span class="project-type">Projet personnel · 2025</span>
+            </div>
+            <p class="project-desc">
+              Application d'outreach automatisé : scraping LinkedIn,
+              enrichissement multi-API, orchestration de 4 agents IA en
+              parallèle, envoi d'emails personnalisés. Dashboard enterprise avec
+              logs temps réel.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Next.js 16</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Cheerio</span>
+              <span class="tech-tag">OpenRouter AI</span>
+              <span class="tech-tag">Resend</span>
+              <span class="tech-tag">Hunter.io</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name"
+                >Hopla — Application de Livraison P2P</span
+              >
+              <span class="project-type">Projet personnel · 2025</span>
+            </div>
+            <p class="project-desc">
+              Application de livraison communautaire complète : gestion de
+              commandes, paiement sécurisé (Stripe, Apple Pay), suivi en temps
+              réel, interface glassmorphism responsive. Déployée sur Vercel.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Firebase Firestore</span>
+              <span class="tech-tag">Stripe API</span>
+              <span class="tech-tag">Apple Pay</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name"
+                >My Tajwid — Application Communautaire</span
+              >
+              <span class="project-type">Projet personnel · 2025</span>
+            </div>
+            <p class="project-desc">
+              Plateforme de cours avec géolocalisation de lieux, design animé
+              avec effets dynamiques, interface mobile responsive.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">CSS Animations</span>
+              <span class="tech-tag">Geolocation API</span>
+              <span class="tech-tag">Responsive</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXPÉRIENCES PRO (reframed) -->
+        <section>
+          <div class="section-title">Expériences Professionnelles</div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Concepteur Numérique — CDI</span>
+              <span class="exp-date">Sept. 2023 – 2025</span>
+            </div>
+            <div class="exp-company">Atelier de l'Objet · Paris</div>
+            <ul class="exp-details">
+              <li>
+                Conception 3D pour marques de Haute Joaillerie (flux numérique
+                complet)
+              </li>
+              <li>
+                Gestion de projets en équipe avec chefs de projets et
+                prestataires
+              </li>
+              <li>Optimisation des processus numériques de production</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Concepteur Numérique — Projet Tutoré</span>
+              <span class="exp-date">Mai – Juil. 2023</span>
+            </div>
+            <div class="exp-company">Cartier Joaillerie · Paris</div>
+            <ul class="exp-details">
+              <li>
+                Conception 3D d'une collection complète pour la marque Cartier
+              </li>
+              <li>
+                Présentation devant un jury d'experts en conception numérique
+              </li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Concepteur Numérique — Freelance</span>
+              <span class="exp-date">2021 – 2023</span>
+            </div>
+            <div class="exp-company">
+              CAM3D (Paris) · MR Jewelry (Anvers, Belgique)
+            </div>
+            <ul class="exp-details">
+              <li>
+                Missions en autonomie pour plusieurs marques et créateurs
+                internationaux
+              </li>
+              <li>Modélisation 3D haute précision (Rhino 8, Matrix 9)</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Joaillier — CDD</span>
+              <span class="exp-date">Août – Déc. 2021</span>
+            </div>
+            <div class="exp-company">Orest Group · Erstein (67)</div>
+            <ul class="exp-details">
+              <li>
+                Production industrielle : fonte, soudure, polissage de précision
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- FORMATION -->
+        <section>
+          <div class="section-title">Formation</div>
+
+          <div class="edu-item">
+            <span class="edu-year">2025</span>
+            <div class="edu-info">
+              <div class="edu-diploma">
+                BTS SIO option SLAM
+                <span style="font-weight: 400; color: #6366f1; font-size: 9px"
+                  >— En recherche d'alternance</span
+                >
+              </div>
+              <div class="edu-school">
+                Services Informatiques aux Organisations · Solutions Logicielles
+                et Applications Métiers
+              </div>
+            </div>
+          </div>
+
+          <div class="edu-item">
+            <span class="edu-year">2023</span>
+            <div class="edu-info">
+              <div class="edu-diploma">
+                Bachelor Concepteur Numérique (Bac+2)
+              </div>
+              <div class="edu-school">Haute École de Joaillerie · Paris</div>
+            </div>
+          </div>
+
+          <div class="edu-item">
+            <span class="edu-year">2020</span>
+            <div class="edu-info">
+              <div class="edu-diploma">CAP Bijouterie-Joaillerie</div>
+              <div class="edu-school">Atelier du Créateur · Paris</div>
+            </div>
+          </div>
+
+          <div class="edu-item">
+            <span class="edu-year">2017</span>
+            <div class="edu-info">
+              <div class="edu-diploma">Bac STI2D — Mention Européenne</div>
+              <div class="edu-school">Lycée Louis Couffignal · Strasbourg</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Print button -->
+    <div class="print-bar no-print">
+      <button class="print-btn" onclick="window.print()">
+        📄 Exporter en PDF
+      </button>
+    </div>
+  </body>
+</html>
