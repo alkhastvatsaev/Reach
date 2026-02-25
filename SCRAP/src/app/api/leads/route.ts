@@ -21,3 +21,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
+
+export async function DELETE() {
+  try {
+    const leads = await getLeads();
+    // Archive everything that isn't emailed or booked
+    for (const lead of leads) {
+      if (lead.status !== 'emailed' && lead.status !== 'booked' && lead.status !== 'archived') {
+        await updateLeadStatus(lead.id, 'archived');
+      }
+    }
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}

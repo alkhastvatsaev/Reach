@@ -102,7 +102,7 @@ function generateEmailHtml(
 
 export async function POST(req: Request) {
   try {
-    const { toEmail, prospectName, companyName, icebreaker, lm, cc } = await req.json();
+    const { toEmail, prospectName, companyName, icebreaker, lm, cc, subject } = await req.json();
     if (!toEmail) return NextResponse.json({ success: false, error: 'Email manquant.' }, { status: 400 });
 
     const transporter = createTransporter();
@@ -113,11 +113,13 @@ export async function POST(req: Request) {
     const attachments: any[] = [];
     if (fs.existsSync(cvPath)) attachments.push({ filename: 'CV_Alkhast_VATSAEV_Developpeur.pdf', path: cvPath });
 
+    const mailSubject = subject || `Candidature Alternance Développeur | ${CANDIDATE.fullName}`;
+
     const info = await transporter.sendMail({
       from: `"${CANDIDATE.fullName}" <${process.env.GMAIL_USER}>`,
       to: toEmail,
-      cc: cc || [], // Support for multiple CC recipients
-      subject: `Candidature Alternance Développeur | ${CANDIDATE.fullName}`,
+      cc: cc || [],
+      subject: mailSubject,
       html: emailHtml,
       attachments,
     });

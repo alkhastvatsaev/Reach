@@ -27,7 +27,7 @@ interface ScrapedLead {
   domain?: string;
   logo?: string;
   email?: string;
-  status: 'scraped' | 'enriched' | 'emailed' | 'linkedIn' | 'booked';
+  status: 'scraped' | 'enriched' | 'emailed' | 'linkedIn' | 'booked' | 'archived';
   date: string;
 }
 
@@ -131,9 +131,9 @@ export default function Home() {
 
       if (!grokData.success) throw new Error("Échec de la génération IA.");
 
-      const { copywriter: pitch, lm, scorer } = grokData.agents;
+      const { copywriter: pitch, lm, scorer, subject } = grokData.agents;
       addLog(`📊 Score Match : ${scorer}`, 'info');
-      addLog(`📝 Lettre de Motivation générée (${lm.length} caractères).`, 'info');
+      addLog(`📝 Lettre de Motivation et Objet générés.`, 'info');
 
       // 3. DELIVERY: Gmail SMTP with CV attachment
       addLog(`📧 Étape 3 : Dispatch final via Gmail SMTP (Nodemailer)...`, 'action');
@@ -145,7 +145,8 @@ export default function Home() {
           prospectName: targetName,
           companyName: lead.name,
           icebreaker: pitch,
-          lm: lm
+          lm: lm,
+          subject: subject
         })
       });
       const emailData = await emailRes.json();
@@ -168,17 +169,46 @@ export default function Home() {
   };
 
   const runAutoPilot = async () => {
-    const targets = leads.filter(l => l.status === 'scraped' || l.status === 'enriched');
-    if (targets.length === 0) return;
-    
-    addLog(`Auto-Pilot engaged for ${targets.length} leads. Stand by...`, 'action');
-    
-    for (const lead of targets) {
-      if (isProcessing) break; // Allow manual stop via a global flag if we had one
-      await runFullSequence(lead);
+    // SECURITY: Limit to 5 per batch and only Tier-2 to be safe
+    const targets = leads
+      .filter(l => (l.status === 'scraped' || l.status === 'enriched'))
+      .slice(0, 5); 
+
+    if (targets.length === 0) {
+      addLog("Aucune cible prête pour l'Auto-Pilot.", 'info');
+      return;
     }
     
-    addLog("Auto-Pilot mission completed successfully.", 'action');
+    addLog(`🛡️ Mode Sécurité : Envoi de 5 candidatures avec 15s de délai entre chaque.`, 'action');
+    
+    for (const lead of targets) {
+      if (isProcessing) {
+        await runFullSequence(lead);
+        
+        // Wait random time between 30 and 45 seconds (Jitter)
+        if (targets.indexOf(lead) < targets.length - 1) {
+          const delay = Math.floor(Math.random() * (45000 - 30000 + 1) + 30000);
+          addLog(`⏳ Pause 'humaine' de sécurité (${Math.round(delay/1000)}s)...`, 'info');
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
+    }
+    
+    addLog("🏁 Session Auto-Pilot terminée.", 'action');
+  };
+
+  const clearPipeline = async () => {
+    if (!confirm("Voulez-vous archiver tous les leads non contactés pour repartir à zéro ?")) return;
+    addLog(`🧹 Nettoyage du pipeline en cours...`, 'action');
+    try {
+      const res = await fetch('/api/leads', { method: 'DELETE' });
+      if (res.ok) {
+        addLog(`✅ Pipeline nettoyé. Tous les leads sont archivés.`, 'info');
+        fetchLeads();
+      }
+    } catch (e: any) {
+      addLog(`Erreur nettoyage: ${e.message}`, 'error');
+    }
   };
 
   const toggleEmailVisibility = (id: string) => {
@@ -270,6 +300,10 @@ export default function Home() {
                 Start Auto-Pilot
               </button>
             )}
+            <button className="btn-apple text-red-500 border-red-200" onClick={clearPipeline}>
+              <EyeOff size={16} />
+              Nettoyer
+            </button>
             <button className="btn-apple" onClick={() => setActiveTab(activeTab === 'search' ? 'pipeline' : 'search')}>
               {activeTab === 'search' ? <Briefcase size={16} /> : <Search size={16} />}
               {activeTab === 'search' ? 'View Pipeline' : 'New Search'}
@@ -357,14 +391,16 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    {leads.length === 0 ? (
+                    {leads.filter(l => l.status !== 'archived').length === 0 ? (
                       <tr>
-                        <td colSpan={4} className="empty-state">
-                          Start by searching for companies.
+                        <td colSpan={6} className="empty-state">
+                          Votre pipeline est propre. Chargez de nouvelles opportunités !
                         </td>
                       </tr>
                     ) : (
-                      leads.map((lead) => (
+                      leads
+                        .filter(l => l.status !== 'archived')
+                        .map((lead) => (
                         <tr key={lead.id}>
                           <td>
                             <div className="company-info">

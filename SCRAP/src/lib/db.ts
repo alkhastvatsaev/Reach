@@ -13,7 +13,7 @@ export interface Lead {
   domain?: string;
   logo?: string;
   email?: string;
-  status: 'scraped' | 'enriched' | 'emailed' | 'linkedIn' | 'booked';
+  status: 'scraped' | 'enriched' | 'emailed' | 'linkedIn' | 'booked' | 'archived';
   date: string;
 }
 

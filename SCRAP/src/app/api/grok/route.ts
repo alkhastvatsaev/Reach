@@ -121,27 +121,34 @@ export async function POST(req: Request) {
 
     const p5 = callAIAgent(
       apiKey, 
-      `Tu es un expert en recrutement IT français. Rédige une Lettre de Motivation (LM) complète et percutante (environ 250-300 mots).
-      Structure obligatoire :
-      1. VOUS : Pourquoi cette entreprise vous intéresse-t-elle ? (basé sur le profil de l'entreprise).
-      2. MOI : Ton parcours unique (29 ans, reconversion, rigueur de la joaillerie chez Cartier/Anvers, passion pour le code).
-      3. NOUS : Ce que tu vas apporter à l'entreprise (tes projets Fullstack Reach/Hopla/Tajwid, ta maturité, ta capacité à livrer).
-      4. Appel à l'action pour un entretien.
-      Ton : Professionnel, déterminé, humble mais sûr de tes compétences.
-      Réponds uniquement avec le texte de la lettre, sans en-tête d'adresse ni signature finale (car elles sont gérées par le template).`, 
+      `Rédige une Lettre de Motivation (LM) unique. 
+      IMPORTANT : Varie la structure. Ne commence pas toujours par "Passionné par...". 
+      Utilise un ton naturel, comme si tu écrivais à un futur collègue. 
+      Mélange ton parcours Cartier et ton code (Reach/Hopla) de façon fluide. 
+      Pas de liste à puces, fais des paragraphes naturels.`, 
       enhancedPrompt
-    ).catch(e => "Lettre de motivation en cours de rédaction...");
+    ).catch(e => "LM en cours...");
 
-    const [analysis, copy, score, review, coverLetter] = await Promise.all([p1, p2, p3, p4, p5]);
+    const [analyst, copywriterRes, scorer, reviewer, lm] = await Promise.all([p1, p2, p3, p4, p5]);
+
+    let subject = `Candidature Alternance Développeur | Alkhast VATSAEV`;
+    let pitch = copywriterRes;
+
+    try {
+      const parsed = JSON.parse(copywriterRes);
+      subject = parsed.subject;
+      pitch = parsed.pitch;
+    } catch(e) {}
 
     return NextResponse.json({
       success: true,
       agents: {
-        analyst: analysis,
-        copywriter: copy,
-        scorer: score,
-        reviewer: review,
-        lm: coverLetter
+        analyst,
+        copywriter: pitch,
+        subject,
+        scorer,
+        reviewer,
+        lm
       }
     });
 
