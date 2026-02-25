@@ -1,0 +1,79 @@
+
+> reach@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.98:3000
+
+✓ Starting...
+✓ Ready in 544ms
+ GET / 200 in 340ms (compile: 289ms, render: 51ms)
+ GET / 200 in 47ms (compile: 9ms, render: 38ms)
+Firebase Credentials missing. Sync is [DISABLED]. Using Local JSON persistence.
+ GET /api/leads 200 in 134ms (compile: 110ms, render: 25ms)
+  Reload env: .env.local
+ GET / 200 in 57ms (compile: 41ms, render: 16ms)
+  Reload env: .env.local
+ GET / 200 in 42ms (compile: 21ms, render: 21ms)
+  Reload env: .env.local
+ GET / 200 in 40ms (compile: 30ms, render: 10ms)
+  Reload env: .env.local
+ GET / 200 in 50ms (compile: 34ms, render: 16ms)
+  Reload env: .env.local
+ GET / 200 in 81ms (compile: 67ms, render: 15ms)
+ GET / 200 in 76ms (compile: 8ms, render: 68ms)
+Firebase Cloud Sync [ACTIVE]
+ GET /api/leads 200 in 95ms (compile: 87ms, render: 8ms)
+Using Apollo.io High-Performance Search for [Développeur React] in [Strasbourg]
+(node:4047) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Apollo Search Error: {
+  error: 'api/v1/mixed_people/search is not accessible with this api_key on a free plan. Please upgrade your plan from https://app.apollo.io/.',
+  error_code: 'API_INACCESSIBLE'
+}
+ POST /api/scrape 400 in 1258ms (compile: 697ms, render: 562ms)
+ GET /api/leads 200 in 12ms (compile: 3ms, render: 9ms)
+Using Apollo.io High-Performance Search for [Développeur React] in [Strasbourg]
+Apollo Search Error: {
+  error: 'api/v1/mixed_people/search is not accessible with this api_key on a free plan. Please upgrade your plan from https://app.apollo.io/.',
+  error_code: 'API_INACCESSIBLE'
+}
+ POST /api/scrape 400 in 460ms (compile: 5ms, render: 455ms)
+ GET /api/leads 200 in 16ms (compile: 4ms, render: 12ms)
+✓ Compiled in 54ms
+ GET / 200 in 105ms (compile: 61ms, render: 44ms)
+ GET /api/leads 200 in 6ms (compile: 2ms, render: 4ms)
+✓ Compiled in 64ms
+✓ Compiled in 27ms
+✓ Compiled in 20ms
+✓ Compiled in 10ms
+✓ Compiled in 13ms
+Using Apollo.io High-Performance Search for [Stage developpeur] in [Strasbourg]
+Apollo Search Error: {
+  error: 'api/v1/mixed_people/search is not accessible with this api_key on a free plan. Please upgrade your plan from https://app.apollo.io/.',
+  error_code: 'API_INACCESSIBLE'
+}
+ POST /api/scrape 400 in 420ms (compile: 4ms, render: 416ms)
+ GET /api/leads 200 in 14ms (compile: 4ms, render: 10ms)
+ GET /api/leads 200 in 15ms (compile: 4ms, render: 12ms)
+✓ Compiled in 22ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 20ms
+ GET / 200 in 132ms (compile: 41ms, render: 90ms)
+ GET /api/leads 200 in 6ms (compile: 3ms, render: 3ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 42ms
+ GET / 200 in 85ms (compile: 42ms, render: 42ms)
+ GET /api/leads 200 in 5ms (compile: 795µs, render: 4ms)
+ GET / 200 in 50ms (compile: 7ms, render: 43ms)
+ GET /api/leads 200 in 9ms (compile: 929µs, render: 8ms)
+  Reload env: .env.local
+ GET / 200 in 108ms (compile: 31ms, render: 77ms)
+ GET /api/leads 200 in 37ms (compile: 30ms, render: 8ms)
+ GET / 200 in 46ms (compile: 5ms, render: 41ms)
+ GET /api/leads 200 in 9ms (compile: 1593µs, render: 8ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 13ms
+ GET / 200 in 103ms (compile: 58ms, render: 45ms)
+ GET /api/leads 200 in 8ms (compile: 2ms, render: 6ms)
