@@ -2096,8 +2096,8 @@
       }
 
       // === Initialisation ===
-      window.addEventListener("DOMContentLoaded", async () => {
-        console.log("DOMContentLoaded");
+      async function initializeApp() {
+        console.log("App Initialization Started");
         const savedLang = localStorage.getItem("tajwid_lang") || "fr";
         setLanguage(savedLang);
         updateStatsUI();
@@ -2131,7 +2131,14 @@
         } catch (e) {
           console.error("Initial load failed:", e);
         }
-      });
+      }
+
+      if (document.readyState === "loading") {
+        window.addEventListener("DOMContentLoaded", initializeApp);
+      } else {
+        // En Next.js, le script peut charger après le DOMContentLoaded
+        initializeApp();
+      }
 
       // === NEW DUO MODE LOGIC (User 1 & User 2) ===
       let duoConn = null;
