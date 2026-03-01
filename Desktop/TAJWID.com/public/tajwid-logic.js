@@ -2267,11 +2267,25 @@
         { char: 'ي', name: 'Ya', type: 'norm' },
       ];
 
+      function speakLetter(char, name) {
+        if (!window.speechSynthesis) return alert("Synthèse vocale non supportée par votre navigateur.");
+        window.speechSynthesis.cancel(); // Stop any currently playing audio
+        const utterance = new SpeechSynthesisUtterance(char);
+        utterance.lang = 'ar-SA';
+        utterance.rate = 0.5; // slow speed for clear pronunciation
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+
       function openAlphabetModal() {
         const wrap = document.getElementById("alphabet-grid");
         if (wrap && wrap.innerHTML.trim() === "") {
           wrap.innerHTML = arabicAlphabet.map(l => `
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s all" onmouseenter="this.style.background='rgba(52,199,89,0.1)'; this.style.borderColor='var(--success)'; this.style.transform='scale(1.1)'" onmouseleave="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)'; this.style.transform='scale(1)'">
+            <div 
+              onclick="speakLetter('${l.char}', '${l.name}')"
+              style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s all" 
+              onmouseenter="this.style.background='rgba(52,199,89,0.1)'; this.style.borderColor='var(--success)'; this.style.transform='scale(1.1)'" 
+              onmouseleave="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)'; this.style.transform='scale(1)'">
               <span style="font-family: var(--font-arabic); font-size: 3rem; color: #fff;">${l.char}</span>
               <span style="font-size: 0.6rem; text-transform: uppercase; color: #aaa; margin-top: 10px; font-weight: 600;">${l.name}</span>
             </div>
@@ -2308,6 +2322,7 @@
       window.SURAHS_LIST = SURAHS_LIST;
       window.openAlphabetModal = openAlphabetModal;
       window.closeAlphabetModal = closeAlphabetModal;
+      window.speakLetter = speakLetter;
       window.toggleLangMenu = toggleLangMenu;
       window.setLanguage = setLanguage;
       window.openStatsModal = openStatsModal;
