@@ -1315,10 +1315,13 @@
       }
 
       // === Reconnaissance vocale + audio optimisés ===
+      let isInitializingMicrophone = false;
+
       async function startRecognition() {
         console.log("startRecognition invoked");
 
-        if (isRecording) return;
+        if (isRecording || isInitializingMicrophone) return;
+        isInitializingMicrophone = true;
 
         const overlay = document.getElementById("start-overlay");
         const startTxt = document.getElementById("txt-start");
@@ -1421,6 +1424,9 @@
           }
 
           // Speech Recognition
+          if (recognition) {
+              try { recognition.stop(); } catch (e) {}
+          }
           recognition = new SpeechRecognition();
           recognition.lang = "ar-SA";
           recognition.continuous = true;
@@ -1473,14 +1479,20 @@
             }
           };
 
-          recognition.start();
+          try {
+            recognition.start();
+          } catch (startErr) {
+            console.warn("Speech recognition already started:", startErr);
+          }
 
           // Update ghost word for the first word
           const ghost = document.getElementById("ghost-word-container");
           if (ghost && verseData[currentIdx]) {
             ghost.innerText = verseData[currentIdx].ar;
           }
+          isInitializingMicrophone = false;
         } catch (err) {
+          isInitializingMicrophone = false;
           console.error("Microphone Error:", err);
           let userMsg = "Erreur micro : " + err.message;
           if (err.name === "NotAllowedError") {
