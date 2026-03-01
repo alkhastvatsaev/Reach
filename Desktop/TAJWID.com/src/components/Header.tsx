@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -20,18 +21,11 @@ export default function Header() {
         </svg>
       </button>
 
-      <button className="heart-btn" id="header-alphabet" onClick={(e) => {
-                        // Evaluate the vanilla string script in the context of the element
-                        // or just rely on global scope if it's a function call
-                        try {
-                            const fn = new Function('event', `openAlphabetModal()`);
-                            fn.call(e.currentTarget, e.nativeEvent || e);
-                        } catch(err) { console.error('Inline event error', err); }
-                    }} title="Apprendre l'Alphabet" style={{"marginLeft":"10px"}}>
+      <Link href="/alphabet" className="heart-btn" id="header-alphabet" title="Apprendre l'Alphabet" style={{"marginLeft":"10px"}}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 7V4h16v3M9 20h6M12 4v16" />
         </svg>
-      </button>
+      </Link>
 
       <div className="mini-lang-selector">
         <button className="lang-menu-btn" onClick={(e) => {
