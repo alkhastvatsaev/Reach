@@ -1367,6 +1367,8 @@
           // Succès : on cache l'overlay et on marque comme enregistrant
           isRecording = true;
           if (overlay) overlay.style.display = "none";
+          const appLayout = document.getElementById("app-layout");
+          if (appLayout) appLayout.style.display = "flex";
           document.getElementById("live-assistant")?.classList.add("visible");
           resetUI();
           updateAssistantWords();
@@ -1492,6 +1494,12 @@
             startTxt.innerText =
               translations[currentLang]?.start || "Touchez pour commencer";
           isRecording = false;
+          
+          // Show the layout and hide overlay even if mic fails so user isn't stuck
+          const overlay = document.getElementById("start-overlay");
+          if (overlay) overlay.style.display = "none";
+          const appLayout = document.getElementById("app-layout");
+          if (appLayout) appLayout.style.display = "flex";
         }
       }
 
