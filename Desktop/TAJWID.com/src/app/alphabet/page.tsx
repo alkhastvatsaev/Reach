@@ -42,6 +42,8 @@ export default function AlphabetPage() {
   const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
+    let isMounted = true;
+    
     // Initialiser la reconnaissance vocale
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognition) {
@@ -59,22 +61,30 @@ export default function AlphabetPage() {
       };
 
       rec.onerror = (e: any) => {
-        console.error("Erreur reco:", e.error);
         if (e.error !== 'aborted') {
+          console.error("Erreur reco:", e.error);
           setFeedback({text: `Erreur micro: ${e.error}`, type: 'error'});
           setIsRecording(false);
         }
       };
 
       rec.onend = () => {
-        // Toujours relancer si on essaye d'écouter en continu (sauf erreur critique)
-        try {
-          recognitionRef.current?.start();
-          setIsRecording(true);
-        } catch (e) {
-          console.error("Failed to restart recognition", e);
-          setIsRecording(false);
-        }
+        // Ne pas relancer si le composant est démonté
+        if (!isMounted) return;
+        
+        // Toujours relancer si on essaye d'écouter en continu avec un léger délai pour éviter InvalidStateError
+        setTimeout(() => {
+          if (!isMounted) return;
+          try {
+            recognitionRef.current?.start();
+            setIsRecording(true);
+          } catch (e: any) {
+            if (e.name !== "InvalidStateError") {
+              console.error("Failed to restart recognition", e);
+              setIsRecording(false);
+            }
+          }
+        }, 300);
       };
 
       recognitionRef.current = rec;
@@ -83,17 +93,20 @@ export default function AlphabetPage() {
       try {
         rec.start();
         setIsRecording(true);
-      } catch (e) {
-         console.warn("Already started", e);
+      } catch (e: any) {
+         if (e.name !== "InvalidStateError") {
+             console.warn("Already started", e);
+         }
       }
     } else {
       setFeedback({text: "Votre navigateur ne supporte pas la reconnaissance vocale.", type: 'error'});
     }
 
     return () => {
+      isMounted = false;
       // Nettoyage à la sortie de la page
       if (recognitionRef.current) {
-        try { recognitionRef.current.stop(); } catch(e) {}
+        try { recognitionRef.current.abort(); } catch(e) {}
       }
     };
   }, []); // Only run once on mount
