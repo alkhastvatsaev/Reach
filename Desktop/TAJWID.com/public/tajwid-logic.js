@@ -1460,13 +1460,15 @@
           };
 
           recognition.onerror = (e) => {
-            console.error("Erreur Recognition:", e.error);
-            sessionDiagnostics.errors.push({
-              time: new Date().toISOString(),
-              type: e.error,
-            });
-            if (e.error === "not-allowed")
-              alert("Microphone bloqué par le navigateur.");
+            if (e.error !== 'aborted') {
+              console.error("Erreur Recognition:", e.error);
+              sessionDiagnostics.errors.push({
+                time: new Date().toISOString(),
+                type: e.error,
+              });
+              if (e.error === "not-allowed")
+                alert("Microphone bloqué par le navigateur.");
+            }
           };
 
           recognition.onend = () => {

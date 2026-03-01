@@ -39,6 +39,9 @@ export default function AlphabetPage() {
   const [isRecording, setIsRecording] = useState(false);
   const [feedback, setFeedback] = useState<{text: string, type: 'success'|'error'|'info'}>({text: "Écoute en cours... 🎤 Prononcez n'importe quelle lettre.", type: 'info'});
   
+  const [foundLetters, setFoundLetters] = useState<string[]>([]);
+  const foundLettersRef = useRef<string[]>([]);
+  
   const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
@@ -147,6 +150,11 @@ export default function AlphabetPage() {
         setActiveLetter(detectedLetter);
         setFeedback({text: `✅ Magnifique ! J'ai entendu la lettre « ${detectedLetter.name} » (${detectedLetter.char}). Prononcez-en une autre !`, type: 'success'});
         
+        if (!foundLettersRef.current.includes(detectedLetter.char)) {
+            foundLettersRef.current = [...foundLettersRef.current, detectedLetter.char];
+            setFoundLetters(foundLettersRef.current);
+        }
+
         // Remove highlighting after 3 seconds so user can try again clearly
         setTimeout(() => {
             setActiveLetter(current => current?.char === currentDetectedChar ? null : current);
@@ -212,8 +220,8 @@ export default function AlphabetPage() {
               onClick={() => handleLetterClick(l.char)}
               title="Cliquer pour entendre"
               style={{
-                background: activeLetter?.char === l.char ? 'var(--accent)' : 'rgba(255,255,255,0.05)', 
-                border: `1px solid ${activeLetter?.char === l.char ? 'var(--accent)' : 'rgba(255,255,255,0.1)'}`, 
+                background: activeLetter?.char === l.char || foundLetters.includes(l.char) ? 'var(--accent)' : 'rgba(255,255,255,0.05)', 
+                border: `1px solid ${activeLetter?.char === l.char || foundLetters.includes(l.char) ? 'var(--accent)' : 'rgba(255,255,255,0.1)'}`, 
                 borderRadius: '15px', 
                 padding: '25px 5px', 
                 display: 'flex', 
@@ -222,13 +230,13 @@ export default function AlphabetPage() {
                 justifyContent: 'center', 
                 cursor: 'pointer', 
                 transition: '0.4s all cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: activeLetter?.char === l.char ? '0 10px 25px rgba(16, 185, 129, 0.4)' : 'none',
+                boxShadow: activeLetter?.char === l.char ? '0 10px 25px rgba(16, 185, 129, 0.4)' : (foundLetters.includes(l.char) ? '0 5px 15px rgba(16, 185, 129, 0.2)' : 'none'),
                 transform: activeLetter?.char === l.char ? 'scale(1.1) translateY(-5px)' : 'scale(1)',
                 zIndex: activeLetter?.char === l.char ? 10 : 1
               }}
             >
               <span style={{fontFamily: 'var(--font-arabic)', fontSize: '3rem', color: '#fff'}}>{l.char}</span>
-              <span style={{fontSize: '0.75rem', textTransform: 'uppercase', color: activeLetter?.char === l.char ? '#fff' : '#aaa', marginTop: '10px', fontWeight: 700}}>{l.name}</span>
+              <span style={{fontSize: '0.75rem', textTransform: 'uppercase', color: activeLetter?.char === l.char || foundLetters.includes(l.char) ? '#fff' : '#aaa', marginTop: '10px', fontWeight: 700}}>{l.name}</span>
             </div>
           ))}
         </div>
