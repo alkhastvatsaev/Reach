@@ -4,34 +4,34 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 const arabicAlphabet = [
-  { char: 'ا', name: 'Alif', keywords: ['ا', 'أ', 'إ', 'آ', 'alif'] },
-  { char: 'ب', name: 'Ba', keywords: ['ب', 'ba', 'baa'] },
-  { char: 'ت', name: 'Ta', keywords: ['ت', 'ta'] },
-  { char: 'ث', name: 'Tha', keywords: ['ث', 'tha', 'sa'] },
-  { char: 'ج', name: 'Jiim', keywords: ['ج', 'jim', 'djim'] },
-  { char: 'ح', name: 'Ha', keywords: ['ح', 'ha', 'haa'] },
-  { char: 'خ', name: 'Kha', keywords: ['خ', 'kha', 'ra'] },
-  { char: 'د', name: 'Dal', keywords: ['د', 'dal', 'daal'] },
-  { char: 'ذ', name: 'Dhal', keywords: ['ذ', 'dhal', 'zal'] },
-  { char: 'ر', name: 'Ra', keywords: ['ر', 'ra'] },
-  { char: 'ز', name: 'Zay', keywords: ['ز', 'zay', 'za'] },
-  { char: 'س', name: 'Siin', keywords: ['س', 'sin'] },
-  { char: 'ش', name: 'Shiin', keywords: ['ش', 'shin', 'chin'] },
-  { char: 'ص', name: 'Saad', keywords: ['ص', 'sad'] },
-  { char: 'ض', name: 'Daad', keywords: ['ض', 'dad', 'dod'] },
-  { char: 'ط', name: 'Ta', keywords: ['ط', 'ta', 'to'] },
-  { char: 'ظ', name: 'Za', keywords: ['ظ', 'za', 'zo'] },
-  { char: 'ع', name: 'Ayn', keywords: ['ع', 'ain', 'ayn'] },
-  { char: 'غ', name: 'Ghayn', keywords: ['غ', 'ghain', 'rhain'] },
-  { char: 'ف', name: 'Fa', keywords: ['ف', 'fa'] },
-  { char: 'ق', name: 'Qaaf', keywords: ['ق', 'qaf', 'kaf'] },
-  { char: 'ك', name: 'Kaaf', keywords: ['ك', 'kaf', 'kef'] },
-  { char: 'ل', name: 'Laam', keywords: ['ل', 'lam'] },
-  { char: 'م', name: 'Miim', keywords: ['م', 'mim'] },
-  { char: 'ن', name: 'Nuun', keywords: ['ن', 'nun', 'noun'] },
-  { char: 'ه', name: 'Ha', keywords: ['ه', 'ha'] },
-  { char: 'و', name: 'Waw', keywords: ['و', 'waw'] },
-  { char: 'ي', name: 'Ya', keywords: ['ي', 'ya'] },
+  { char: 'ا', name: 'Alif', keywords: ['ا', 'أ', 'إ', 'آ', 'alif', 'ألف'] },
+  { char: 'ب', name: 'Ba', keywords: ['ب', 'ba', 'baa', 'باء'] },
+  { char: 'ت', name: 'Ta', keywords: ['ت', 'ta', 'taa', 'تاء'] },
+  { char: 'ث', name: 'Tha', keywords: ['ث', 'tha', 'sa', 'ثاء'] },
+  { char: 'ج', name: 'Jiim', keywords: ['ج', 'jim', 'djim', 'jeem', 'جيم'] },
+  { char: 'ح', name: 'Ha', keywords: ['ح', 'ha', 'haa', 'حاء'] },
+  { char: 'خ', name: 'Kha', keywords: ['خ', 'kha', 'ra', 'خاء'] },
+  { char: 'د', name: 'Dal', keywords: ['د', 'dal', 'daal', 'دال'] },
+  { char: 'ذ', name: 'Dhal', keywords: ['ذ', 'dhal', 'zal', 'ذال'] },
+  { char: 'ر', name: 'Ra', keywords: ['ر', 'ra', 'raa', 'راء'] },
+  { char: 'ز', name: 'Zay', keywords: ['ز', 'zay', 'za', 'zayn', 'زاي', 'زين'] },
+  { char: 'س', name: 'Siin', keywords: ['س', 'sin', 'siin', 'seen', 'سين'] },
+  { char: 'ش', name: 'Shiin', keywords: ['ش', 'shin', 'chin', 'sheen', 'شين'] },
+  { char: 'ص', name: 'Saad', keywords: ['ص', 'sad', 'saad', 'صاد'] },
+  { char: 'ض', name: 'Daad', keywords: ['ض', 'dad', 'dod', 'daad', 'ضاد'] },
+  { char: 'ط', name: 'Ta', keywords: ['ط', 'ta', 'to', 'taa', 'طاء'] },
+  { char: 'ظ', name: 'Za', keywords: ['ظ', 'za', 'zo', 'zaa', 'ظاء'] },
+  { char: 'ع', name: 'Ayn', keywords: ['ع', 'ain', 'ayn', 'عين'] },
+  { char: 'غ', name: 'Ghayn', keywords: ['غ', 'ghain', 'rhain', 'ghayn', 'غين'] },
+  { char: 'ف', name: 'Fa', keywords: ['ف', 'fa', 'faa', 'فاء'] },
+  { char: 'ق', name: 'Qaaf', keywords: ['ق', 'qaf', 'kaf', 'qaaf', 'قاف'] },
+  { char: 'ك', name: 'Kaaf', keywords: ['ك', 'kaf', 'kef', 'kaaf', 'كاف'] },
+  { char: 'ل', name: 'Laam', keywords: ['ل', 'lam', 'laam', 'لام'] },
+  { char: 'م', name: 'Miim', keywords: ['م', 'mim', 'meem', 'ميم'] },
+  { char: 'ن', name: 'Nuun', keywords: ['ن', 'nun', 'noun', 'noon', 'nuun', 'نون'] },
+  { char: 'ه', name: 'Ha', keywords: ['ه', 'ha', 'haa', 'هاء'] },
+  { char: 'و', name: 'Waw', keywords: ['و', 'waw', 'waaw', 'واو'] },
+  { char: 'ي', name: 'Ya', keywords: ['ي', 'ya', 'yaa', 'ياء'] },
 ];
 
 export default function AlphabetPage() {
@@ -62,6 +62,9 @@ export default function AlphabetPage() {
         }
         
         const text = transcript.toLowerCase().trim();
+        const cleanTextForWords = text.replace(/[,.!?،؛]/g, '');
+        const words = cleanTextForWords.split(/\s+/);
+
         setDebugText(text);
         
         let newFoundArray = [...foundLettersRef.current];
@@ -72,7 +75,13 @@ export default function AlphabetPage() {
 
             let isMatch = false;
             letter.keywords.forEach(kw => {
-                if (text.includes(kw.toLowerCase())) {
+                const lowerKw = kw.toLowerCase();
+                // 1. Exact match among words
+                if (words.includes(lowerKw)) {
+                    isMatch = true;
+                }
+                // 2. Exact match on the whole sentence
+                if (cleanTextForWords === lowerKw) {
                     isMatch = true;
                 }
             });
