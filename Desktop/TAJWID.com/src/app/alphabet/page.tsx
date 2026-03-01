@@ -159,6 +159,20 @@ export default function AlphabetPage() {
         setTimeout(() => {
             setActiveLetter(current => current?.char === currentDetectedChar ? null : current);
         }, 3000);
+    } else {
+        setFeedback({text: `J'ai entendu "${transcript}", mais je n'ai pas reconnu l'une des 28 lettres. Réessayez !`, type: 'info'});
+    }
+  };
+
+  const forceStartMicrophone = () => {
+    if (!isRecording && recognitionRef.current) {
+        try {
+            recognitionRef.current.start();
+            setIsRecording(true);
+            setFeedback({text: "Écoute relancée manuellement... 🎤", type: 'info'});
+        } catch(e) {
+            console.warn(e);
+        }
     }
   };
 
@@ -176,7 +190,17 @@ export default function AlphabetPage() {
           </svg>
           Retour aux Sourates
         </Link>
-        <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+        <div 
+          onClick={forceStartMicrophone}
+          style={{
+            display: 'flex', alignItems: 'center', gap: '8px', 
+            cursor: !isRecording ? 'pointer' : 'default',
+            padding: '5px 10px',
+            borderRadius: '20px',
+            background: !isRecording ? 'rgba(255,55,95,0.1)' : 'transparent'
+          }}
+          title={!isRecording ? "Cliquer pour forcer l'écoute" : ""}
+        >
           <div style={{
             width: '10px', height: '10px', borderRadius: '50%',
             background: isRecording ? '#fc3c44' : '#555',
