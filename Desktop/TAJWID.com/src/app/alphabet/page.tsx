@@ -104,13 +104,21 @@ export default function AlphabetPage() {
     if (isRecording) {
       recognitionRef.current?.stop();
       setIsRecording(false);
+      setFeedback({text: "Écoute arrêtée.", type: 'info'});
     } else {
       try {
         setFeedback({text: "Écoute en cours... 🎤", type: 'info'});
         recognitionRef.current?.start();
         setIsRecording(true);
-      } catch (e) {
-        console.warn(e);
+      } catch (e: any) {
+        console.warn("Speech start err:", e);
+        if (e.name === "InvalidStateError") {
+            // Already started, we can just assume it's recording
+            setIsRecording(true);
+        } else {
+            setFeedback({text: `Erreur au démarrage du micro: ${e.message}`, type: 'error'});
+            setIsRecording(false);
+        }
       }
     }
   };
