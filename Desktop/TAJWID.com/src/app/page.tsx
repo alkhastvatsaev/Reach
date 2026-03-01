@@ -24,7 +24,7 @@ export default function TajwidPage() {
       <div id="start-overlay" style={{ cursor: 'pointer', zIndex: 9999, display: 'flex' }} onClick={(e) => {
           // This allows users to start the app by clicking on the overlay
           try {
-              const fn = new Function('event', `startRecording()`);
+              const fn = new Function('event', `startRecognition()`);
               fn.call(e.currentTarget, e.nativeEvent || e);
           } catch(err) { console.error('Inline event error', err); }
       }}>
