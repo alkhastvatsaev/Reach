@@ -134,7 +134,7 @@ export default function AlphabetPage() {
   return (
     <div style={{minHeight: '100vh', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#0a0a0a', color: 'white'}}>
       <div style={{width: '100%', maxWidth: '1000px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', marginTop: 'calc(20px + env(safe-area-inset-top))'}}>
-        <Link href="/" style={{
+        <a href="/" style={{
           display: 'flex', alignItems: 'center', gap: '8px', 
           background: 'rgba(255,255,255,0.05)', padding: '10px 20px', borderRadius: '100px', 
           textDecoration: 'none', color: 'white', border: '1px solid rgba(255,255,255,0.1)'
@@ -143,7 +143,7 @@ export default function AlphabetPage() {
             <polyline points="15 18 9 12 15 6" />
           </svg>
           Retour
-        </Link>
+        </a>
         <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
           <div style={{
             width: '12px', height: '12px', borderRadius: '50%',
