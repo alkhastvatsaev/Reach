@@ -37,8 +37,14 @@ const arabicAlphabet = [
 export default function AlphabetPage() {
   const [activeLetter, setActiveLetter] = useState<{char: string, name: string} | null>(null);
   const [isRecording, setIsRecording] = useState(false);
-  const [feedback, setFeedback] = useState<{text: string, type: 'success'|'error'|'info'}>({text: "Sélectionnez une lettre et appuyez sur le micro.", type: 'info'});
+  const [feedback, setFeedback] = useState<{text: string, type: 'success'|'error'|'info'}>({text: "Appuyez sur le micro et prononcez n'importe quelle lettre.", type: 'info'});
+  
   const recognitionRef = useRef<any>(null);
+  const isRecordingRef = useRef(false);
+
+  useEffect(() => {
+    isRecordingRef.current = isRecording;
+  }, [isRecording]);
 
   useEffect(() => {
     // Initialiser la reconnaissance vocale
@@ -46,8 +52,8 @@ export default function AlphabetPage() {
     if (SpeechRecognition) {
       const rec = new SpeechRecognition();
       rec.lang = 'ar-SA';
-      rec.continuous = false;
-      rec.interimResults = false;
+      rec.continuous = true;
+      rec.interimResults = true;
 
       rec.onresult = (event: any) => {
         let transcript = "";
@@ -58,18 +64,27 @@ export default function AlphabetPage() {
       };
 
       rec.onerror = (e: any) => {
-        console.error("Erreur reco:", e);
-        setFeedback({text: `Erreur micro: ${e.error}`, type: 'error'});
-        setIsRecording(false);
+        console.error("Erreur reco:", e.error);
+        if (e.error !== 'aborted') {
+          setFeedback({text: `Erreur micro: ${e.error}`, type: 'error'});
+          setIsRecording(false);
+        }
       };
 
       rec.onend = () => {
-        setIsRecording(false);
+        if (isRecordingRef.current) {
+          try {
+            recognitionRef.current?.start();
+          } catch (e) {
+            console.error("Failed to restart recognition", e);
+            setIsRecording(false);
+          }
+        }
       };
 
       recognitionRef.current = rec;
     } else {
-      setFeedback({text: "Votre navigateur ne supporte pas la reconnaissance vocale pour cet exercice.", type: 'error'});
+      setFeedback({text: "Votre navigateur ne supporte pas la reconnaissance vocale.", type: 'error'});
     }
 
     return () => {
@@ -78,7 +93,7 @@ export default function AlphabetPage() {
         try { recognitionRef.current.stop(); } catch(e) {}
       }
     };
-  }, [activeLetter]);
+  }, []); // Only run once on mount
 
   const speakLetter = (char: string) => {
     if (!window.speechSynthesis) return;
@@ -92,31 +107,26 @@ export default function AlphabetPage() {
   const handleLetterClick = (char: string, name: string) => {
     setActiveLetter({ char, name });
     speakLetter(char);
-    setFeedback({text: `Vous avez sélectionné la lettre « ${name} », entraînez-vous !`, type: 'info'});
+    setFeedback({text: `Lettre « ${name} », écoutez ou prononcez une autre lettre !`, type: 'info'});
   };
 
   const toggleMic = () => {
-    if (!activeLetter) {
-      setFeedback({text: "Veuillez d'abord sélectionner une lettre dans la grille.", type: 'error'});
-      return;
-    }
-
     if (isRecording) {
-      recognitionRef.current?.stop();
+      isRecordingRef.current = false;
       setIsRecording(false);
+      recognitionRef.current?.stop();
       setFeedback({text: "Écoute arrêtée.", type: 'info'});
     } else {
       try {
-        setFeedback({text: "Écoute en cours... 🎤", type: 'info'});
+        setFeedback({text: "Écoute continue... 🎤 Prononcez une lettre au hasard.", type: 'info'});
         recognitionRef.current?.start();
         setIsRecording(true);
       } catch (e: any) {
         console.warn("Speech start err:", e);
         if (e.name === "InvalidStateError") {
-            // Already started, we can just assume it's recording
             setIsRecording(true);
         } else {
-            setFeedback({text: `Erreur au démarrage du micro: ${e.message}`, type: 'error'});
+            setFeedback({text: `Erreur: ${e.message}`, type: 'error'});
             setIsRecording(false);
         }
       }
@@ -124,15 +134,26 @@ export default function AlphabetPage() {
   };
 
   const evaluatePronunciation = (transcript: string) => {
-    if (!activeLetter) return;
+    if (!transcript) return;
     console.log("Transcript original:", transcript);
-    // On extrait la première lettre, ou on nettoie
+    
     const cleanWord = transcript.replace(/[^\u0600-\u06FF]/g, '').trim(); 
-    if (cleanWord.includes(activeLetter.char) || transcript.toLowerCase().includes(activeLetter.name.toLowerCase())) {
-        setFeedback({text: "✅ Parfait ! Masha'Allah, excellente prononciation.", type: 'success'});
-        // Jouer un petit son ou animation si nécessaire
-    } else {
-        setFeedback({text: `❌ Non, j'ai entendu "${transcript}". Réessayez " ${activeLetter.char} " !`, type: 'error'});
+    const lowerTranscript = transcript.toLowerCase();
+
+    // Check if the transcript matches any letter in the alphabet
+    let detectedLetter = null;
+    
+    // First, try to match the exact Arabic character
+    detectedLetter = arabicAlphabet.find(l => cleanWord.includes(l.char));
+    
+    // Fallback, try to match by name (transliteration) if the AI recognized French/English text
+    if (!detectedLetter) {
+        detectedLetter = arabicAlphabet.find(l => lowerTranscript.includes(l.name.toLowerCase()));
+    }
+
+    if (detectedLetter) {
+        setActiveLetter(detectedLetter);
+        setFeedback({text: `✅ Magnifique ! J'ai bien entendu la lettre « ${detectedLetter.name} » (${detectedLetter.char}).`, type: 'success'});
     }
   };
 
