@@ -4,34 +4,34 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 const arabicAlphabet = [
-  { char: 'ا', name: 'Alif', keywords: ['ا', 'أ', 'إ', 'آ', 'alif', 'ألف'] },
-  { char: 'ب', name: 'Ba', keywords: ['ب', 'ba', 'baa', 'باء'] },
-  { char: 'ت', name: 'Ta', keywords: ['ت', 'ta', 'taa', 'تاء'] },
-  { char: 'ث', name: 'Tha', keywords: ['ث', 'tha', 'sa', 'ثاء'] },
-  { char: 'ج', name: 'Jiim', keywords: ['ج', 'jim', 'djim', 'jeem', 'جيم'] },
-  { char: 'ح', name: 'Ha', keywords: ['ح', 'ha', 'haa', 'حاء'] },
-  { char: 'خ', name: 'Kha', keywords: ['خ', 'kha', 'ra', 'خاء'] },
-  { char: 'د', name: 'Dal', keywords: ['د', 'dal', 'daal', 'دال'] },
-  { char: 'ذ', name: 'Dhal', keywords: ['ذ', 'dhal', 'zal', 'ذال'] },
-  { char: 'ر', name: 'Ra', keywords: ['ر', 'ra', 'raa', 'راء'] },
-  { char: 'ز', name: 'Zay', keywords: ['ز', 'zay', 'za', 'zayn', 'زاي', 'زين'] },
-  { char: 'س', name: 'Siin', keywords: ['س', 'sin', 'siin', 'seen', 'سين'] },
-  { char: 'ش', name: 'Shiin', keywords: ['ش', 'shin', 'chin', 'sheen', 'شين'] },
-  { char: 'ص', name: 'Saad', keywords: ['ص', 'sad', 'saad', 'صاد'] },
-  { char: 'ض', name: 'Daad', keywords: ['ض', 'dad', 'dod', 'daad', 'ضاد'] },
-  { char: 'ط', name: 'Ta', keywords: ['ط', 'ta', 'to', 'taa', 'طاء'] },
-  { char: 'ظ', name: 'Za', keywords: ['ظ', 'za', 'zo', 'zaa', 'ظاء'] },
-  { char: 'ع', name: 'Ayn', keywords: ['ع', 'ain', 'ayn', 'عين'] },
-  { char: 'غ', name: 'Ghayn', keywords: ['غ', 'ghain', 'rhain', 'ghayn', 'غين'] },
-  { char: 'ف', name: 'Fa', keywords: ['ف', 'fa', 'faa', 'فاء'] },
-  { char: 'ق', name: 'Qaaf', keywords: ['ق', 'qaf', 'kaf', 'qaaf', 'قاف'] },
-  { char: 'ك', name: 'Kaaf', keywords: ['ك', 'kaf', 'kef', 'kaaf', 'كاف'] },
-  { char: 'ل', name: 'Laam', keywords: ['ل', 'lam', 'laam', 'لام'] },
-  { char: 'م', name: 'Miim', keywords: ['م', 'mim', 'meem', 'ميم'] },
-  { char: 'ن', name: 'Nuun', keywords: ['ن', 'nun', 'noun', 'noon', 'nuun', 'نون'] },
-  { char: 'ه', name: 'Ha', keywords: ['ه', 'ha', 'haa', 'هاء'] },
-  { char: 'و', name: 'Waw', keywords: ['و', 'waw', 'waaw', 'واو'] },
-  { char: 'ي', name: 'Ya', keywords: ['ي', 'ya', 'yaa', 'ياء'] },
+  { char: 'ا', name: 'Alif', keywords: ['ا', 'أ', 'إ', 'آ', 'alif', 'ألف', 'halif', 'alice', 'a leaf', 'leaf', 'lif'] },
+  { char: 'ب', name: 'Ba', keywords: ['ب', 'ba', 'baa', 'باء', 'bas', 'bah', 'bat'] },
+  { char: 'ت', name: 'Ta', keywords: ['ت', 'ta', 'taa', 'تاء', 'tas', 'tard', 'top'] },
+  { char: 'ث', name: 'Tha', keywords: ['ث', 'tha', 'sa', 'ثاء', 'ça', 'saw', 'the'] },
+  { char: 'ج', name: 'Jiim', keywords: ['ج', 'jim', 'djim', 'jeem', 'جيم', 'gym', 'dj'] },
+  { char: 'ح', name: 'Ha', keywords: ['ح', 'ha', 'haa', 'حاء', 'h', 'ah', 'as'] },
+  { char: 'خ', name: 'Kha', keywords: ['خ', 'kha', 'ra', 'خاء', 'k', 'ras'] },
+  { char: 'د', name: 'Dal', keywords: ['د', 'dal', 'daal', 'دال', 'dalle', 'doll'] },
+  { char: 'ذ', name: 'Dhal', keywords: ['ذ', 'dhal', 'zal', 'ذال', 'zall', 'val', 'zappe'] },
+  { char: 'ر', name: 'Ra', keywords: ['ر', 'ra', 'raa', 'راء', 'ras', 'rat', 'raw'] },
+  { char: 'ز', name: 'Zay', keywords: ['ز', 'zay', 'za', 'zayn', 'زاي', 'زين', 'z', 'zoo'] },
+  { char: 'س', name: 'Siin', keywords: ['س', 'sin', 'siin', 'seen', 'سين', 'cygne', 'signe', 'scene'] },
+  { char: 'ش', name: 'Shiin', keywords: ['ش', 'shin', 'chin', 'sheen', 'شين', 'chine'] },
+  { char: 'ص', name: 'Saad', keywords: ['ص', 'sad', 'saad', 'صاد', 'sade', 'sod'] },
+  { char: 'ض', name: 'Daad', keywords: ['ض', 'dad', 'dod', 'daad', 'ضاد', 'dade'] },
+  { char: 'ط', name: 'Ta', keywords: ['ط', 'ta', 'to', 'taa', 'طاء', 'tah'] },
+  { char: 'ظ', name: 'Za', keywords: ['ظ', 'za', 'zo', 'zaa', 'ظاء', 'zah'] },
+  { char: 'ع', name: 'Ayn', keywords: ['ع', 'ain', 'ayn', 'عين', 'aine', 'eye', 'haine'] },
+  { char: 'غ', name: 'Ghayn', keywords: ['غ', 'ghain', 'rhain', 'ghayn', 'غين', 'raine', 'gain'] },
+  { char: 'ف', name: 'Fa', keywords: ['ف', 'fa', 'faa', 'فاء', 'f', 'femme', 'far'] },
+  { char: 'ق', name: 'Qaaf', keywords: ['ق', 'qaf', 'kaf', 'qaaf', 'قاف', 'caf', 'cough'] },
+  { char: 'ك', name: 'Kaaf', keywords: ['ك', 'kaf', 'kef', 'kaaf', 'كاف', 'calf', 'k'] },
+  { char: 'ل', name: 'Laam', keywords: ['ل', 'lam', 'laam', 'لام', 'lame', 'l\'âme', 'lamb'] },
+  { char: 'م', name: 'Miim', keywords: ['م', 'mim', 'meem', 'ميم', 'mime', 'meme'] },
+  { char: 'ن', name: 'Nuun', keywords: ['ن', 'nun', 'noun', 'noon', 'nuun', 'نون', 'noune'] },
+  { char: 'ه', name: 'Ha', keywords: ['ه', 'ha', 'haa', 'هاء', 'hah'] },
+  { char: 'و', name: 'Waw', keywords: ['و', 'waw', 'waaw', 'واو', 'ouaou', 'waouh', 'wow'] },
+  { char: 'ي', name: 'Ya', keywords: ['ي', 'ya', 'yaa', 'ياء', 'y\'a', 'y', 'yeah'] },
 ];
 
 export default function AlphabetPage() {
@@ -49,7 +49,7 @@ export default function AlphabetPage() {
       const rec = new SpeechRecognition();
       rec.continuous = true;
       rec.interimResults = true;
-      rec.lang = 'ar-SA'; // Langue arabe par défaut pour capturer l'accent
+      rec.lang = 'fr-FR'; // Langue française pour capturer les translittérations latines (les "lettres anglaises")
 
       rec.onstart = () => {
         if (isMounted) setIsListening(true);
