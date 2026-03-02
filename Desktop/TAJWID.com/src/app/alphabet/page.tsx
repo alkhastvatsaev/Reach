@@ -54,6 +54,12 @@ export default function AlphabetPage() {
 
   useEffect(() => {
     isComponentMounted.current = true;
+
+    // S'assurer de couper le micro de la Fatiha (tajwid-logic.js) si on est arrivé ici
+    if (typeof window !== 'undefined' && (window as any).stopRecognition) {
+      (window as any).stopRecognition();
+    }
+
     return () => {
       isComponentMounted.current = false;
       cleanupAudio();
