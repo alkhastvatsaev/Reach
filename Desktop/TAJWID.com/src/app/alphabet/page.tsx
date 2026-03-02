@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 
 const arabicAlphabet = [
   { char: 'ا', name: 'Alif', keywords: ['ا', 'أ', 'إ', 'آ', 'alif', 'ألف', 'halif', 'alice', 'a leaf', 'leaf', 'lif'] },
@@ -35,113 +34,216 @@ const arabicAlphabet = [
 ];
 
 export default function AlphabetPage() {
+  const [isStarted, setIsStarted] = useState(false);
   const [foundLetters, setFoundLetters] = useState<string[]>([]);
   const foundLettersRef = useRef<string[]>([]);
+  
   const [isListening, setIsListening] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [debugText, setDebugText] = useState("");
-  const recognitionRef = useRef<any>(null);
+
+  // Refs for Web Audio API
+  const audioContextRef = useRef<any>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+  const isSpeakingRef = useRef(false);
+  const silenceTimerRef = useRef<any>(null);
+  const isComponentMounted = useRef(true);
 
   useEffect(() => {
-    let isMounted = true;
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    
-    if (SpeechRecognition) {
-      const rec = new SpeechRecognition();
-      rec.continuous = true;
-      rec.interimResults = true;
-      rec.lang = 'fr-FR'; // Langue française pour capturer les translittérations latines (les "lettres anglaises")
-
-      rec.onstart = () => {
-        if (isMounted) setIsListening(true);
-      };
-
-      rec.onresult = (event: any) => {
-        let transcript = "";
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          transcript += event.results[i][0].transcript;
-        }
-        
-        const text = transcript.toLowerCase().trim();
-        const cleanTextForWords = text.replace(/[,.!?،؛]/g, '');
-        const words = cleanTextForWords.split(/\s+/);
-
-        setDebugText(text);
-        
-        let newFoundArray = [...foundLettersRef.current];
-        let letterDetected = false;
-        
-        arabicAlphabet.forEach(letter => {
-            if (newFoundArray.includes(letter.char)) return; // Déjà trouvée
-
-            let isMatch = false;
-            letter.keywords.forEach(kw => {
-                const lowerKw = kw.toLowerCase();
-                // 1. Exact match among words
-                if (words.includes(lowerKw)) {
-                    isMatch = true;
-                }
-                // 2. Exact match on the whole sentence
-                if (cleanTextForWords === lowerKw) {
-                    isMatch = true;
-                }
-            });
-            
-            if (isMatch) {
-                newFoundArray.push(letter.char);
-                letterDetected = true;
-            }
-        });
-        
-        if (letterDetected && isMounted) {
-            foundLettersRef.current = newFoundArray;
-            setFoundLetters([...newFoundArray]);
-        }
-      };
-
-      rec.onerror = (e: any) => {
-        if (e.error !== 'aborted') {
-            console.error(e.error);
-            if (isMounted) setIsListening(false);
-        }
-      };
-
-      rec.onend = () => {
-        if (!isMounted) return;
-        setIsListening(false);
-        // Auto-restart silencieux
-        setTimeout(() => {
-            if (isMounted && recognitionRef.current) {
-                try {
-                    recognitionRef.current.start();
-                } catch(err) {
-                    // Ignore InvalidStateError
-                }
-            }
-        }, 300);
-      };
-
-      recognitionRef.current = rec;
-      
-      try {
-        rec.start();
-      } catch(e) {}
-    }
-
+    isComponentMounted.current = true;
     return () => {
-      isMounted = false;
-      if (recognitionRef.current) {
-        try { recognitionRef.current.abort(); } catch(e) {}
-      }
+      isComponentMounted.current = false;
+      cleanupAudio();
     };
   }, []);
 
-  const resetProgress = () => {
-    foundLettersRef.current = [];
-    setFoundLetters([]);
+  const cleanupAudio = () => {
+    if (audioContextRef.current) {
+        try { audioContextRef.current.close(); } catch(e) {}
+    }
+    if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+    }
+  };
+
+  const evaluateWhisperText = (transcript: string) => {
+    const text = transcript.toLowerCase().trim();
+    if (!text) return;
+    
+    setDebugText(text);
+
+    const cleanTextForWords = text.replace(/[,.!?،؛]/g, '');
+    const words = cleanTextForWords.split(/\s+/);
+    
+    let newFoundArray = [...foundLettersRef.current];
+    let letterDetected = false;
+    
+    arabicAlphabet.forEach(letter => {
+        if (newFoundArray.includes(letter.char)) return;
+
+        let isMatch = false;
+        letter.keywords.forEach(kw => {
+            const lowerKw = kw.toLowerCase();
+            if (words.includes(lowerKw)) isMatch = true;
+            if (cleanTextForWords === lowerKw) isMatch = true;
+        });
+        
+        if (isMatch) {
+            newFoundArray.push(letter.char);
+            letterDetected = true;
+        }
+    });
+    
+    if (letterDetected && isComponentMounted.current) {
+        foundLettersRef.current = newFoundArray;
+        setFoundLetters([...newFoundArray]);
+    }
+  };
+
+  const sendToWhisper = async (audioBlob: Blob) => {
+      setIsProcessing(true);
+      const formData = new FormData();
+      formData.append("file", audioBlob);
+
+      try {
+          const res = await fetch("/api/whisper", {
+              method: "POST",
+              body: formData
+          });
+
+          if (res.ok) {
+              const data = await res.json();
+              if (data.text) evaluateWhisperText(data.text);
+          } else {
+              setDebugText("Erreur avec l'API Whisper");
+          }
+      } catch (err) {
+          console.error("Whisper Request Error", err);
+          setDebugText("Erreur de connexion...");
+      } finally {
+          setIsProcessing(false);
+      }
+  };
+
+  const initAudio = async () => {
+      setIsStarted(true);
+      try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          streamRef.current = stream;
+
+          const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+          const audioContext = new AudioContext();
+          audioContextRef.current = audioContext;
+
+          const microphone = audioContext.createMediaStreamSource(stream);
+          const analyser = audioContext.createAnalyser();
+          analyser.fftSize = 512;
+          analyser.minDecibels = -60;
+          microphone.connect(analyser);
+          
+          const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+          mediaRecorderRef.current = mediaRecorder;
+
+          mediaRecorder.ondataavailable = (e) => {
+              if (e.data.size > 0) {
+                  audioChunksRef.current.push(e.data);
+              }
+          };
+
+          mediaRecorder.onstop = () => {
+              if (audioChunksRef.current.length > 0) {
+                  const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+                  audioChunksRef.current = [];
+                  sendToWhisper(blob);
+              }
+          };
+
+          const dataArray = new Uint8Array(analyser.frequencyBinCount);
+          
+          const checkAudioLevel = () => {
+              if (!isComponentMounted.current) return;
+              
+              analyser.getByteFrequencyData(dataArray);
+              let sum = 0;
+              for (let i = 0; i < dataArray.length; i++) {
+                  sum += dataArray[i];
+              }
+              const average = sum / dataArray.length;
+              
+              const isCurrentlySpeaking = average > 15; // Threshold
+              
+              if (isCurrentlySpeaking) {
+                  if (!isSpeakingRef.current) {
+                      isSpeakingRef.current = true;
+                      setIsListening(true);
+                      
+                      if (mediaRecorderRef.current?.state === 'inactive') {
+                          audioChunksRef.current = [];
+                          mediaRecorderRef.current.start();
+                      }
+                      if (silenceTimerRef.current) {
+                          clearTimeout(silenceTimerRef.current);
+                      }
+                  } else {
+                      if (silenceTimerRef.current) {
+                          clearTimeout(silenceTimerRef.current);
+                      }
+                  }
+              } else {
+                  if (isSpeakingRef.current) {
+                      if (!silenceTimerRef.current) {
+                          silenceTimerRef.current = setTimeout(() => {
+                              isSpeakingRef.current = false;
+                              setIsListening(false);
+                              if (mediaRecorderRef.current?.state === 'recording') {
+                                  mediaRecorderRef.current.stop();
+                              }
+                              silenceTimerRef.current = null;
+                          }, 1200); // Stop after 1.2 seconds of silence
+                      }
+                  }
+              }
+
+              requestAnimationFrame(checkAudioLevel);
+          };
+          
+          checkAudioLevel();
+
+      } catch (err) {
+          console.error("Audio initialization failed", err);
+          alert("Impossible d'accéder au microphone.");
+      }
   };
 
   return (
     <div style={{minHeight: '100vh', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#0a0a0a', color: 'white'}}>
+      
+      {!isStarted && (
+        <div onClick={initAudio} style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
+          background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 9999,
+          display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', cursor: 'pointer'
+        }}>
+          <div style={{
+              background: 'linear-gradient(135deg, #10b981, #059669)',
+              padding: '20px 40px', borderRadius: '100px', fontWeight: 700,
+              fontSize: '1.2rem', boxShadow: '0 10px 30px rgba(16, 185, 129, 0.4)',
+              display: 'flex', alignItems: 'center', gap: '15px'
+          }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            Activer l'IA Whisper
+          </div>
+          <p style={{marginTop: '20px', color: '#888'}}>Touchez n'importe où pour démarrer la reconnaissance continue</p>
+        </div>
+      )}
+
       <div style={{width: '100%', maxWidth: '1000px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', marginTop: 'calc(20px + env(safe-area-inset-top))'}}>
         <a href="/" style={{
           display: 'flex', alignItems: 'center', gap: '8px', 
@@ -156,20 +258,29 @@ export default function AlphabetPage() {
         <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
           <div style={{
             width: '12px', height: '12px', borderRadius: '50%',
-            background: isListening ? '#34d399' : '#fc3c44',
-            boxShadow: isListening ? '0 0 10px #34d399' : 'none',
+            background: isListening ? '#fc3c44' : (isProcessing ? '#3b82f6' : '#555'),
+            boxShadow: isListening ? '0 0 10px #fc3c44' : (isProcessing ? '0 0 10px #3b82f6' : 'none'),
             transition: '0.3s all'
           }}></div>
-          <span style={{fontSize: '0.9rem', color: '#888'}}>{isListening ? 'Micro ouvert...' : 'Micro fermé'}</span>
+          <span style={{fontSize: '0.9rem', color: '#888'}}>
+              {isListening ? 'Enregistrement...' : isProcessing ? 'Analyse Whisper...' : 'En attente de voix...'}
+          </span>
         </div>
       </div>
 
       <div style={{width: '100%', maxWidth: '1000px', textAlign: 'center', marginBottom: '30px'}}>
-        <h1 style={{fontSize: '2rem', fontWeight: 700, marginBottom: '10px'}}>Alphabet Arabe</h1>
-        <p style={{color: '#888'}}>Prononcez n'importe quelle lettre. Elle s'allumera en vert lorsqu'elle sera reconnue.</p>
+        <h1 style={{fontSize: '2.5rem', fontWeight: 800, marginBottom: '10px', background: '-webkit-linear-gradient(45deg, #10b981, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>Alphabet Arabe Master</h1>
+        <p style={{color: '#888'}}>Prononcez une lettre, Whisper IA l'analyse et l'allume sur la grille.</p>
         
-        <div style={{marginTop: '20px', minHeight: '40px', color: '#555', fontSize: '0.9rem', fontStyle: 'italic', background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '10px'}}>
-          {debugText ? `Entendu: "${debugText}"` : "Le micro vous écoute en continu..."}
+        <div style={{marginTop: '20px', minHeight: '40px', color: '#aaa', fontSize: '1rem', fontStyle: 'italic', background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+          {isProcessing && (
+              <svg width="18" height="18" viewBox="0 0 24 24" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" style={{animation: 'spin 1s linear infinite'}}>
+                  <circle cx="12" cy="12" r="10" stroke="#3b82f6" strokeOpacity="0.2"/>
+                  <path d="M12 2a10 10 0 0 1 10 10"/>
+                  <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
+              </svg>
+          )}
+          {debugText ? `Dernière détection : "${debugText}"` : "Le micro intelligent vous écoute en continu..."}
         </div>
       </div>
 
@@ -208,7 +319,10 @@ export default function AlphabetPage() {
       
       {foundLetters.length > 0 && (
           <button 
-            onClick={resetProgress}
+            onClick={() => {
+                foundLettersRef.current = [];
+                setFoundLetters([]);
+            }}
             style={{
                 marginTop: '40px',
                 background: 'transparent',
@@ -219,7 +333,7 @@ export default function AlphabetPage() {
                 cursor: 'pointer'
             }}
           >
-            Réinitialiser la grille
+            Réinitialiser la progression
           </button>
       )}
     </div>
