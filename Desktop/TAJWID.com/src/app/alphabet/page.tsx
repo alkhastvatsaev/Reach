@@ -41,6 +41,7 @@ export default function AlphabetPage() {
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [debugText, setDebugText] = useState("");
+  const [audioLevel, setAudioLevel] = useState(0);
 
   // Refs for Web Audio API
   const audioContextRef = useRef<any>(null);
@@ -180,8 +181,10 @@ export default function AlphabetPage() {
               }
               const average = sum / dataArray.length;
               
-              // Sensibilité augmentée: On accepte soit une moyenne basse, soit un pic passager (max)
-              const isCurrentlySpeaking = average > 2 || max > 10;
+              setAudioLevel(max); // Visuel
+
+              // Plus grande sensibilité pour être sûr de capter des sons légers (lettres subtiles)
+              const isCurrentlySpeaking = average > 2 || max > 5;
               
               if (isCurrentlySpeaking) {
                   if (!isSpeakingRef.current) {
@@ -268,8 +271,9 @@ export default function AlphabetPage() {
           <div style={{
             width: '12px', height: '12px', borderRadius: '50%',
             background: isListening ? '#fc3c44' : (isProcessing ? '#3b82f6' : '#555'),
-            boxShadow: isListening ? '0 0 10px #fc3c44' : (isProcessing ? '0 0 10px #3b82f6' : 'none'),
-            transition: '0.3s all'
+            boxShadow: isListening ? `0 0 ${audioLevel / 5}px #fc3c44` : (isProcessing ? '0 0 10px #3b82f6' : 'none'),
+            transition: '0.1s all',
+            transform: isListening ? `scale(${1 + (audioLevel / 255)})` : 'scale(1)'
           }}></div>
           <span style={{fontSize: '0.9rem', color: '#888'}}>
               {isListening ? 'Enregistrement...' : isProcessing ? 'Analyse Whisper...' : 'En attente de voix...'}
