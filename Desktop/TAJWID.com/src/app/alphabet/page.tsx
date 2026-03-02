@@ -144,7 +144,12 @@ export default function AlphabetPage() {
           analyser.smoothingTimeConstant = 0.2; // Très réactif
           microphone.connect(analyser);
           
-          const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+          let mimeType = '';
+          if (MediaRecorder.isTypeSupported('audio/webm')) mimeType = 'audio/webm';
+          else if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
+          
+          const options = mimeType ? { mimeType } : undefined;
+          const mediaRecorder = new MediaRecorder(stream, options);
           mediaRecorderRef.current = mediaRecorder;
 
           mediaRecorder.ondataavailable = (e) => {
@@ -155,7 +160,7 @@ export default function AlphabetPage() {
 
           mediaRecorder.onstop = () => {
               if (audioChunksRef.current.length > 0) {
-                  const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+                  const blob = new Blob(audioChunksRef.current, { type: mimeType || 'audio/mp4' });
                   audioChunksRef.current = [];
                   sendToWhisper(blob);
               }
