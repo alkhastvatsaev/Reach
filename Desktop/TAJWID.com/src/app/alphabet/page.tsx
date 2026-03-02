@@ -140,7 +140,8 @@ export default function AlphabetPage() {
           const microphone = audioContext.createMediaStreamSource(stream);
           const analyser = audioContext.createAnalyser();
           analyser.fftSize = 512;
-          analyser.minDecibels = -60;
+          analyser.minDecibels = -80; // Plus grande plage de détection
+          analyser.smoothingTimeConstant = 0.2; // Très réactif
           microphone.connect(analyser);
           
           const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
@@ -167,12 +168,15 @@ export default function AlphabetPage() {
               
               analyser.getByteFrequencyData(dataArray);
               let sum = 0;
+              let max = 0;
               for (let i = 0; i < dataArray.length; i++) {
                   sum += dataArray[i];
+                  if (dataArray[i] > max) max = dataArray[i];
               }
               const average = sum / dataArray.length;
               
-              const isCurrentlySpeaking = average > 15; // Threshold
+              // Sensibilité augmentée: On accepte soit une moyenne basse, soit un pic passager (max)
+              const isCurrentlySpeaking = average > 2 || max > 10;
               
               if (isCurrentlySpeaking) {
                   if (!isSpeakingRef.current) {
