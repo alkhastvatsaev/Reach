@@ -2337,3 +2337,4 @@
       window.closeQuranBrowser = closeQuranBrowser;
       window.closeModal = closeModal;
       window.downloadFullAudio = downloadFullAudio;
+      window.stopRecognition = () => { if(recognition) { try { recognition.abort(); isRecording=false; } catch(e){} } };
